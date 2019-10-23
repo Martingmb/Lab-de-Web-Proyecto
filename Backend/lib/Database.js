@@ -56,10 +56,13 @@ var Address = mongoose.model('Address', addressSchema);
 var Order = mongoose.model('Order', orderSchema);
 var Admin = mongoose.model('Admin', adminSchema);
 
+var toObjectId = id=>mongoose.Types.ObjectId(id);
+
 module.exports = {
 	Category,
 	Product,
 	Address,
 	Order,
-	Admin
+	Admin,
+	toObjectId
 }

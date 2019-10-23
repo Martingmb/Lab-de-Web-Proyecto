@@ -12,5 +12,8 @@ module.exports = {
 	errorCreatingUser: Code(200, 'Error creando usuario.'),
 	cannotDeleteSelf: Code(201, 'No te puedes eliminar a ti mismo.'),
 	userDeleted: Code(202, 'El usuario se ha eliminado.'),
-	noUser: Code(203, 'El usuario no se encontró.')
+	noUser: Code(203, 'El usuario no se encontró.'),
+
+	noProduct: Code(300, 'El producto solicitado no existe.')
+
 }
