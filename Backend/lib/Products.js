@@ -1,6 +1,6 @@
 var db = require('./Database');
 
-function getProduct(id){
+async function getProduct(id){
 	return await db.Product.findById(id);
 }
 
@@ -34,7 +34,7 @@ async function editProduct(id, name, description, amount, cost, available){
 }
 
 async function searchProduct(query){
-	return await db.Product.find({ name: '/'+query+'/gi' });
+	return await db.Product.find({ name: new RegExp(query, 'gi') });
 }
 
 async function getProducts(ids){

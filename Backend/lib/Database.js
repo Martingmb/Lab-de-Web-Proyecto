@@ -13,7 +13,7 @@ const categorySchema = new Schema({
 	name: String,
 	active: Boolean,
 	description: String
-});
+}, { timestamps: true });
 const productSchema = new Schema({
 	name: String,
 	description: String,
@@ -21,38 +21,38 @@ const productSchema = new Schema({
 	cost: Number,
 	category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 	available: Boolean
-});
-const addressSchema = new Schema({
-	address: String,
-	number_interior: String,
-	number_exterior: String,
-	neighborhood: String,
-	city: String,
-	zipcode: String,
-	state: String,
-	country: String,
-	phone: String
-})
+}, { timestamps: true });
 const orderSchema = new Schema({
 	items: [{
-		products: { type: Schema.Types.ObjectId, ref: 'Product' },
+		product: { type: Schema.Types.ObjectId, ref: 'Product' },
 		quantity: Number,
 		cost: Number,
 		total: Number
 	}],
 	total: Number,
+	name: String,
 	email: String,
-	address: { type: Schema.Types.ObjectId, ref: 'address' }
-})
+	paid: Boolean,
+	address: {
+		street: String,
+		number_interior: String,
+		number_exterior: String,
+		neighborhood: String,
+		city: String,
+		zipcode: String,
+		state: String,
+		country: String,
+		phone: String
+	}
+}, { timestamps: true })
 const adminSchema = new Schema({
 	name: String,
 	email: String,
 	password: String
-});
+}, { timestamps: true });
 
 var Category = mongoose.model('Category', categorySchema);
 var Product = mongoose.model('Product', productSchema);
-var Address = mongoose.model('Address', addressSchema);
 var Order = mongoose.model('Order', orderSchema);
 var Admin = mongoose.model('Admin', adminSchema);
 
@@ -61,7 +61,6 @@ var toObjectId = id=>mongoose.Types.ObjectId(id);
 module.exports = {
 	Category,
 	Product,
-	Address,
 	Order,
 	Admin,
 	toObjectId
