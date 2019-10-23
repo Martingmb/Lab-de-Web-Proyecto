@@ -1,6 +1,5 @@
 <script>
-    import 'bulma/css/bulma.css'
-	import Level from './subComponents/level.svelte'
+	import Level from '../subComponents/level.svelte'
 </script>
 
 <style>

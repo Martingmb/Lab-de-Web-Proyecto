@@ -1,6 +1,6 @@
 <script>
     import { crossfade, scale } from "svelte/transition";
-	import images from '../images.js';
+	import images from '../home/images.js';
 	import Pagination from './pagination.svelte'
 
 	const [send, receive] = crossfade({

@@ -1,6 +1,7 @@
 <script>
-	import Productos from "./subComponents/productos.svelte";
-	import Menu from "./subComponents/asideMenu.svelte";
+
+	import Productos from "../subComponents/productos.svelte";
+	import Menu from "../subComponents/asideMenu.svelte";
 
 </script>
 
