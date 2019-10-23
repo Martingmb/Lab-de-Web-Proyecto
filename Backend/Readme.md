@@ -10,7 +10,7 @@
 
 # DOCS
 
-### [Admin Calls](Admin)
-### [Store Calls](Store)
-### [Checkout Calls](Checkout)
-### [Order Calls](Order)
+### [Admin Calls](../../../wiki/Admin)
+### [Store Calls](../../../wiki/Store)
+### [Checkout Calls](../../../wiki/Checkout)
+### [Order Calls](../../../wiki/Order)
