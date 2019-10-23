@@ -34,7 +34,7 @@ app.post('/products/get', (req, res)=>{
 		if(!product) return res.error(Codes.noProduct);
 		return res.response(product);
 	}).catch(err=>{
-		return res.error(Codes.unexpectedError);
+		return res.error(Codes.noProduct);
 	});
 });
 
@@ -55,8 +55,11 @@ app.post('/cart', (req, res)=>{
 			var cart_item = items.find(a=>a.id==i._id);
 			if(!cart_item) continue;
 			cart.push({
-				...i,
-				amount: cart_item.amount
+				id: i._id,
+				name: i.name,
+				cost: i.cost,
+				amount: cart_item.amount,
+				total: parseFloat(i.cost)*parseInt(cart_item.amount)
 			});
 		}
 		return res.response(cart);

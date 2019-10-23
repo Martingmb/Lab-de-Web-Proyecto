@@ -42,6 +42,18 @@ async function getProducts(ids){
 	return await db.Product.find({ '_id': { $in: oids } });
 }
 
+async function productsAvailable(items){
+	var ids = items.map(a=>db.toObjectId(a.id));
+	if(ids.length==0) return false;
+	var products = await db.Product.find({ '_id': { $in: ids } });
+	for(var i of items){
+		var prod = products.find(a=>a._id==i.id);
+		if(!prod) return false;
+		if(prod.amount<i.amount) return false;
+	}
+	return true;
+}
+
 module.exports = {
 	getProduct,
 	getProducts,
@@ -50,5 +62,6 @@ module.exports = {
 	createProduct,
 	deleteProduct,
 	editProduct,
-	searchProduct
+	searchProduct,
+	productsAvailable
 }

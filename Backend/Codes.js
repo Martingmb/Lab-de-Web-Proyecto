@@ -14,6 +14,10 @@ module.exports = {
 	userDeleted: Code(202, 'El usuario se ha eliminado.'),
 	noUser: Code(203, 'El usuario no se encontró.'),
 
-	noProduct: Code(300, 'El producto solicitado no existe.')
+	noProduct: Code(300, 'El producto solicitado no existe.'),
 
+	cartUnavailableProduct: Code(400, 'Uno o mas productos ya no se encuentra disponible.'),
+	invalidOrder: Code(401, 'Creación de orden invalida.'),
+	noOrder: Code(402, 'La orden no existe.'),
+	cantUpdatePaidOrder: Code(403, 'No se puede modificar una orden ya pagada.')
 }
