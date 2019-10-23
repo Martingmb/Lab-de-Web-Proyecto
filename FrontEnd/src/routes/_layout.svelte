@@ -1,5 +1,4 @@
 <script>
-	import Nav from '../components/Nav.svelte';
 	import Banner from '../components/Banner.svelte';
 
 	export let segment;
@@ -25,8 +24,6 @@
 </style>
 
 <Banner/>
-
-<Nav {segment}/>
 
 <main>
 	<slot></slot>

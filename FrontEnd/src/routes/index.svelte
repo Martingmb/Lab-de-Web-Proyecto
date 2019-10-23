@@ -1,9 +1,15 @@
 <script>
 	import 'bulma/css/bulma.css';
 	import Gallery from './subComponents/gallery.svelte';
+	import Level from './subComponents/level.svelte'
 </script>
 
 <style>
+
+	@font-face {
+		font-family: Lora;
+		src: url(https://fonts.gstatic.com/s/lora/v14/0QIhMX1D_JOuMw_LLPtLp_A.woff2) format('woff2');
+	}
 
 	h1, figure, p {
 		text-align: center;
@@ -12,6 +18,7 @@
 
 	h1 {
 		font-size: 2.8em;
+		font-family: Lora, serif;
 		text-transform: uppercase;
 		font-weight: 700;
 		margin: 0 0 0.5em 0;
@@ -29,12 +36,18 @@
 	}
 
 	h4 {
-		color:floralwhite
+		color:floralwhite;
+		font-family: Lora, serif;
+	}
+
+	.textColor {
+		color: floralwhite;
 	}
 
 	p {
 		margin: 1em auto;
 		color: white;
+		font-family: Lora, serif;
 	}
 
 	@media (min-width: 480px) {
@@ -58,3 +71,12 @@
   </div>
 
 </div>
+
+
+<div class="container">
+  <div class="notification">
+  	<Level/>
+  </div>
+</div>
+
+
