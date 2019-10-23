@@ -1,0 +1,16 @@
+function Code(code, message){
+	return { code, message };
+}
+
+module.exports = {
+	unexpectedError: Code(001, 'Unexpected error.'),
+	missingInfo: Code(002, 'Falta información para la llamada.'),
+
+	incorrectLogin: Code(100, 'Usuario o contraseña incorrecta.'),
+	invalidToken: Code(101, 'Token de usuario invalida.'),
+
+	errorCreatingUser: Code(200, 'Error creando usuario.'),
+	cannotDeleteSelf: Code(201, 'No te puedes eliminar a ti mismo.'),
+	userDeleted: Code(202, 'El usuario se ha eliminado.'),
+	noUser: Code(203, 'El usuario no se encontró.')
+}
