@@ -1,5 +1,8 @@
 <script>
-
+    import * as sapper from '@sapper/app';
+    function gotoPage() {
+        sapper.goto('adminPage')
+    }
 
 </script>
 
@@ -35,7 +38,7 @@
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Iniciar Sesion</button>
+        <button class="button is-link" on:click={gotoPage}>Iniciar Sesion</button>
       </div>
     </div>
 

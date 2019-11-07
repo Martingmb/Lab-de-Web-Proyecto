@@ -1,32 +1,84 @@
 <script>
-    import { crossfade, scale } from "svelte/transition";
-	import images from '../home/images.js';
+	import { onMount } from 'svelte';
 	import Pagination from './pagination.svelte'
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
+	
+	function process(event) {
+		dispatch('addToCart', event.detail);
+	}
 
-	const [send, receive] = crossfade({
-		duration: 200,
-		fallback: scale
+	let data = [
+		{
+			treeName: 'Arbol 1',
+			treePrice: 10,
+			treeID: 1
+		},
+		{
+			treeName: 'Arbol 2',
+			treePrice: 20,
+			treeID: 2
+		},
+		{
+			treeName: 'Arbol 3',
+			treePrice: 30,
+			treeID: 3
+		},
+		{
+			treeName: 'Arbol 4',
+			treePrice: 40,
+			treeID: 4
+		},
+		{
+			treeName: 'Arbol 5',
+			treePrice: 50,
+			treeID: 5
+		},
+		{
+			treeName: 'Arbol 6',
+			treePrice: 60,
+			treeID: 6
+		},
+		{
+			treeName: 'Arbol 4',
+			treePrice: 40,
+			treeID: 4
+		},
+		{
+			treeName: 'Arbol 5',
+			treePrice: 50,
+			treeID: 5
+		},
+		{
+			treeName: 'Arbol 6',
+			treePrice: 60,
+			treeID: 6
+		}
+	];
+
+	let processedData = [];
+
+	onMount(() => {
+		 processedData = arrayToMatrix(data);
 	});
 
-	let selected = null;
-	let loading = null;
+	const arrayToMatrix = (arr, columns = 3) => {
+		let matrix = [];
 
-	const ASSETS = `https://sveltejs.github.io/assets/crossfade`;
+		for (let i = 0, j = -1; i < arr.length; i++) {
+			if(i % columns === 0) {
+				j++;
+				matrix[j] = [];
+			}
 
-	const load = image => {
-		const timeout = setTimeout(() => loading = image, 100);
+			matrix[j].push(arr[i]);
+		}
 
-		const img = new Image();
+		return matrix;
 
-		img.onload = () => {
-			selected = image;
-			clearTimeout(timeout);
-			loading = null;
-		};
+	}
 
-        img.src = image.src;
 
-	};
 
 
 </script>
@@ -35,95 +87,8 @@
 
 <style>
 
-	.container {
-		background-color: whitesmoke;
-		border-radius: 1em;
-	}
-    h1 {
-        color:black
-    }
-
-    .grid {
-		display: grid;
-		flex: 1;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: repeat(4, 1fr);
-		grid-gap: 2vmin;
-	}
-    button {
-		width: 100%;
-		height: 100%;
-		color: white;
-		font-size: 5vmin;
-		border: none;
-		margin: 0;
-		will-change: transform;
-	}
-    .photo, img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-	}
-
-	.square {
-		border-radius: 2em;
-	}
-
-	.photo {
-		display: flex;
-		align-items: stretch;
-		justify-content: flex-end;
-		flex-direction: column;
-		will-change: transform;
-	}
-
-	img {
-		object-fit: contain;
-		cursor: pointer;
-	}
 </style>
 
 <div class="container">
-	<div class="notification">
-			<div>
-				<div class="grid">
-					{#each images as image}
-						<div class="square">
-							{#if selected !== image}
-								<button
-									class="square"
-									style="background-color: {image.color};"
-									on:click="{() => load(image)}"
-									in:receive={{key:image.id}}
-									out:send={{key:image.id}}
-								>{loading === image ? '...' : image.name}</button>
-							{/if}
-						</div>
-					{/each}
-				</div>
-		
-				{#if selected}
-					{#await selected then d}
-						<div class="photo" in:receive={{key:d.id}} out:send={{key:d.id}}>
-							<img
-								alt={d.alt}
-								src={d.src}
-								on:click="{() => selected = null}"
-							>
-		
-							<p class='credit'>
-								<a target="_blank" href="https://www.flickr.com/photos/{d.path}">via Flickr</a> &ndash;
-								<a target="_blank" href={d.license.url}>{d.license.name}</a>
-							</p>
-						</div>
-					{/await}
-				{/if}
-			</div>
-	</div>
-  	<hr>
-
-	<Pagination/>
+	<Pagination processedData={processedData} on:addToCart={process}/>
 </div>

@@ -1,29 +1,37 @@
 <script>
+	import { createEventDispatcher } from "svelte";
 	import Banner from '../components/Banner.svelte';
+	import AdminLogin from '../components/adminLogin.svelte';
+    const dispatch = createEventDispatcher();
 
-	export let segment;
+	let adminButton = false;
+	let text = 'Inicio de Sesion';
+
+	function loginPage(event) {
+		adminButton = event.detail.clicked;
+	}
+
 </script>
 
 <style>
-
-	:global(body) {
-		/* this will apply to <body> */
-		/* your styles go here */
-	}
 
 	main {
 		position: relative;
 		max-width: 100%;
 		height: 100%;
-		background-color: white;
 		padding: 2em;
 		margin: 0 auto;
 		box-sizing: border-box;
-		background-image: url('https://images.unsplash.com/photo-1567959929898-eb7001451fd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80');
 	}
 </style>
 
-<Banner/>
+<AdminLogin on:message={loginPage} buttonText={text}/>
+
+{#if !adminButton} 
+	<Banner/>
+{/if}
+
+
 
 <main>
 	<slot></slot>

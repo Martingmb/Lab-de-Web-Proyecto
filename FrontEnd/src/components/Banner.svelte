@@ -23,24 +23,13 @@
     font-family: 'Lora', serif;
   }
 
-
+  section {
+    background-color: white;
+  }
 
 </style>
 
 <section class="hero">
-  <div class="hero-head">
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-menu">
-          <div class="navbar-end">
-            <a href="/loginPage" class="navbar-item">
-              Inicio de Sesion
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title title-font">
