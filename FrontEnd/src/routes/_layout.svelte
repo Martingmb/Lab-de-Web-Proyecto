@@ -19,7 +19,6 @@
 		position: relative;
 		max-width: 100%;
 		height: 100%;
-		padding: 2em;
 		margin: 0 auto;
 		box-sizing: border-box;
 	}

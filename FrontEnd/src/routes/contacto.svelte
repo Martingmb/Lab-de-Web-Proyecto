@@ -3,40 +3,54 @@
 
 <style>
 
+.formadecontacto {
+  margin: 15px;
+}
+
+.titulocontacto {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.notification {
+  background-color: none !important;
+}
+
 </style>
 
 
 <div class="container">
 
-  <div class="notification">
-      <h1 class="title is-1">¡Contactanos!</h1>
+
+<div class="row formadecontacto">
+  <div class="col-sm-6">
       
       <div class="field">
-                  <label class="label">Nombre</label>
                   <div class="control">
-                    <input class="input" type="text" placeholder="Tu nombre">
+                    <input class="input" type="text" placeholder="Nombre">
+                  </div>
+      </div>
+
+      <div class="field">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="Telefono">
                   </div>
       </div>
                 
                 
       <div class="field">
-          <label class="label">Email</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="Email input" value="hello@">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
+          <div class="control">
+            <input class="input" type="email" placeholder="Correo Electrónico">
+          
           </div>
       </div>
     
       <div class="field">
-        <label class="label">¡Escribenos!</label>
-        <textarea class="textarea" placeholder="!Gracias por contactarnos!"></textarea>
+        <textarea class="textarea" placeholder="Dejanos tus comentarios"></textarea>
       </div>
-  </div>
+
+</div>
+</div>
 
     
     

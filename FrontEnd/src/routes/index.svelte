@@ -1,5 +1,6 @@
 <script>
     import 'bulma/css/bulma.css'
+    import 'bootstrap/dist/css/bootstrap.css'
     import Level from './subComponents/level.svelte'
 </script>
 
@@ -8,8 +9,15 @@
     :global(body) {
         /* this will apply to <body> */
         /* your styles go here */
-        background-image: url('https://images.unsplash.com/photo-1567959929898-eb7001451fd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80');
+        
     }
+
+    .pidearbol {
+    	padding: 75px;
+    	background-color: #f5f5f5;
+    	/*background-image: url('https://i.ytimg.com/vi/MqH8WtR5hWs/maxresdefault.jpg');*/
+    }
+
 
 	@font-face {
 		font-family: Lora;
@@ -60,27 +68,95 @@
 			font-size: 4em;
 		}
 	}
+
+	.titulopidearbol {
+		text-align: center;
+		font-size: 30px;
+		font-family: Raleway, Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		padding-bottom: 15px;
+	}
+
+	.linea {
+		border:1px solid;
+	}
+
+	.nuestrosservicios {
+		padding-top: 15px;
+		color: black;
+	}
+
+	.cuadros {
+		border: 1px solid;
+		padding: 25px;
+	}
+
+	.adentro {
+		padding: 25px;
+		background-color: white;
+		text-align: center;
+	}
+
+	.adentro > p{
+		color:black;
+	}
+
 </style>
 
 <svelte:head>
 	<title>Vivero de los Santos</title>
 </svelte:head>
 
-<h1 class="is-title">Vivero de los Santos</h1>
-
-<div class="container">
-  <div class="content is-large">
-	<h4>Lorem Ipsum</h4>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </div>
-
-</div>
 
 
-<div class="container">
-  <div class="notification">
-  	<Level/>
-  </div>
-</div>
+	<section class="pidearbol">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-12">
+					<h1 class="titulopidearbol" style="color:black;">¡Pide tu Árbol ya!</h1>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="col-sm-2 offset-sm-5 linea" style="">
+				</div>
+			</div>
+
+
+				<div class="row">
+					<div class="col-sm-4 offset-sm-4">
+						<p class="nuestrosservicios">Nuestros servicios son faciles y accesibles</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-4 cuadros">
+						<div class="adentro">
+							<h7>Paga en Línea</h7>
+							<p>Con nuestro portal puedes pagar en línea facilmente desde tu hogar</p>
+						</div>
+					</div>
+
+					<div class="col-sm-4 cuadros">
+					</div>
+	 
+					<div class="col-sm-4 cuadros">
+					</div>
+
+					
+				</div>
+
+		</div>
+	</section>
+
+
+
+		<footer class="page-footer font-small blue">
+
+		  <div class="footer-copyright text-center py-3">Viveros de los Santos © 2019
+		  </div>
+
+		</footer>
 
 

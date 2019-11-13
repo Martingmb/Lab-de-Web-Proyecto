@@ -20,9 +20,12 @@
         background-color: white;
     }
 
-    section {
-        padding-bottom: 0.24cm;
+    .hero {
+        position: absolute;
+        right: 0px;
     }
+
+    
 
 </style>
 
@@ -31,8 +34,8 @@
 		  <nav class="navbar">
 			<div class="container">
 			  <div class="navbar-menu">
-				<div class="navbar-end">
-				  <a href="/loginPage" class="navbar-item" on:click={sendMsg}>
+				<div>
+				  <a href="/loginPage" class="button btn btn-primary" on:click={sendMsg}>
 					{buttonText}
 				  </a>
 				</div>
