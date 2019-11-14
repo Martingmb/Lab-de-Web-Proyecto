@@ -15,7 +15,7 @@
     .pidearbol {
     	padding: 75px;
     	background-color: #f5f5f5;
-    	/*background-image: url('https://i.ytimg.com/vi/MqH8WtR5hWs/maxresdefault.jpg');*/
+    	background-image: url('https://i.ytimg.com/vi/MqH8WtR5hWs/maxresdefault.jpg');
     }
 
 
@@ -24,9 +24,10 @@
 		src: url(https://fonts.gstatic.com/s/lora/v14/0QIhMX1D_JOuMw_LLPtLp_A.woff2) format('woff2');
 	}
 
-	h1, figure, p {
+	h1, figure, p, h7 {
 		text-align: center;
 		margin: 0 auto;
+		color: white;
 	}
 
 	h1 {
@@ -79,26 +80,46 @@
 
 	.linea {
 		border:1px solid;
+		margin-bottom: 20px;
 	}
 
 	.nuestrosservicios {
-		padding-top: 15px;
-		color: black;
+		padding: 15px;
+		color: white;
+		background-color: rgba(0, 0, 0, 0.6);
+		text-align: center; 
+		text-align: center;
 	}
 
 	.cuadros {
-		border: 1px solid;
-		padding: 25px;
+		padding: 15px;
 	}
 
 	.adentro {
-		padding: 25px;
-		background-color: white;
+		padding: 40px;
+		background-color: rgba(0, 0, 0, 0.6);
+		text-align: center; 
 		text-align: center;
 	}
 
 	.adentro > p{
-		color:black;
+		color:white;
+	}
+
+	.adentro > h1{
+		color:white;
+	}
+
+	.col {
+		display: block;
+    	width: 100%;
+		height: 100%;
+	}
+
+	.jumbotron{
+		background-image: url("https://cdn.pixabay.com/photo/2019/08/26/10/10/leaf-4431306_1280.jpg");
+  		background-size: cover;
+		height: 100%;
 	}
 
 </style>
@@ -109,12 +130,12 @@
 
 
 
-	<section class="pidearbol">
+<section class="pidearbol">
 		<div class="container">
 			<div class="row">
 
 				<div class="col-sm-12">
-					<h1 class="titulopidearbol" style="color:black;">¡Pide tu Árbol ya!</h1>
+					<h1 class="titulopidearbol">¡Pide tu Árbol ya!</h1>
 				</div>
 			</div>
 			<div class="row">
@@ -125,38 +146,59 @@
 
 
 				<div class="row">
-					<div class="col-sm-4 offset-sm-4">
+					<div class="col-sm-12">
 						<p class="nuestrosservicios">Nuestros servicios son faciles y accesibles</p>
 					</div>
 				</div>
-
-				<div class="row">
-					<div class="col-sm-4 cuadros">
-						<div class="adentro">
-							<h7>Paga en Línea</h7>
-							<p>Con nuestro portal puedes pagar en línea facilmente desde tu hogar</p>
+				<div class = "container-fluid">
+					<div class="row">
+						<div class="col-sm-3 cuadros">
+							<div class="adentro">
+								<h7>Paga en Línea</h7>
+								<p>Con nuestro portal puedes pagar en línea</p>
+							</div>
 						</div>
-					</div>
 
-					<div class="col-sm-4 cuadros">
-					</div>
-	 
-					<div class="col-sm-4 cuadros">
-					</div>
+						<div class="col-sm-3 cuadros">
+							<div class="adentro">
+								<h7>Nostros lo plantamos</h7>
+								<p>Vamos a tu casa a plantar tu árbol</p>
+							</div>
+						</div>
+		
+						<div class="col-sm-3 cuadros">
+							<div class="adentro">
+								<h7>Pago en efectivo</h7>
+								<p>Paga al momento de recibirlo en tu casa</p>
+							</div>
+						</div>
 
-					
+						<div class="col-sm-3 cuadros">
+							<div class="adentro">
+								<h7>Árboles de calidad</h7>
+								<p>Cultivados con cuidado desde el 2015</p>
+							</div>
+						</div>
+						
+					</div>				
 				</div>
-
+				
 		</div>
-	</section>
+</section>
+
+<section class = "nosotros">
+	<div class="jumbotron">
+		<h1 class="display-4">Sobre nosotros</h1>
+		<p class="lead">Cultivamos árboles de alta calidad desde el 2015.</p>
+		<p>Estamos comprometidos con el medio ambiente.</p>
+		<p>Creemos que un árbol en cada hogar puede hacer toda la diferencia.</p>
+	</div>
+</section>
 
 
-
-		<footer class="page-footer font-small blue">
-
-		  <div class="footer-copyright text-center py-3">Viveros de los Santos © 2019
-		  </div>
-
-		</footer>
+<footer class="page-footer font-small blue">
+	<div class="footer-copyright text-center py-3">Viveros de los Santos © 2019
+	</div>
+</footer>
 
 
