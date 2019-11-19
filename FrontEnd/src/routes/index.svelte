@@ -15,7 +15,12 @@
     .pidearbol {
     	padding: 75px;
     	background-color: #f5f5f5;
-    	background-image: url('https://i.ytimg.com/vi/MqH8WtR5hWs/maxresdefault.jpg');
+    	color:#ffffff;
+    }
+
+    .nosotros {
+    	padding: 75px;
+    	background-color: #ffffff;
     }
 
 
@@ -50,12 +55,12 @@
 	}
 
 	h4 {
-		color:floralwhite;
+		color:#ffffff;
 		font-family: Lora, serif;
 	}
 
 	.textColor {
-		color: floralwhite;
+		color: #ffffff;
 	}
 
 	p {
@@ -76,17 +81,17 @@
 		font-family: Raleway, Arial, Helvetica, sans-serif;
 		font-weight: bold;
 		padding-bottom: 15px;
+		color: #000000;
 	}
 
 	.linea {
-		border:1px solid;
+		border:1px solid gray;
 		margin-bottom: 20px;
 	}
 
 	.nuestrosservicios {
 		padding: 15px;
-		color: white;
-		background-color: rgba(0, 0, 0, 0.6);
+		color: black;
 		text-align: center; 
 		text-align: center;
 	}
@@ -97,17 +102,17 @@
 
 	.adentro {
 		padding: 40px;
-		background-color: rgba(0, 0, 0, 0.6);
+		background-color: white;
 		text-align: center; 
 		text-align: center;
 	}
 
 	.adentro > p{
-		color:white;
+		color:black;
 	}
 
-	.adentro > h1{
-		color:white;
+	.adentro > h7{
+		color:black;
 	}
 
 	.col {
@@ -116,11 +121,33 @@
 		height: 100%;
 	}
 
-	.jumbotron{
-		background-image: url("https://cdn.pixabay.com/photo/2019/08/26/10/10/leaf-4431306_1280.jpg");
-  		background-size: cover;
-		height: 100%;
-	}
+	.bannerinicio {
+    height: 100vh;
+    background-image: url('https://cdn.shopify.com/s/files/1/0326/7189/files/Untitled_design_7_43cf7dc1-f9f4-4a90-87f6-51e2dfe0040f_2000x.png?v=1563973681');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .titulo {
+    text-align: center;
+    margin:auto;
+    color:#ffffff;
+  }
+
+  .textoinicio {
+  	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+  }
+
+  .boton {
+  	margin: 10px auto 0px auto;
+  	display: block;
+  }
+
+  .textobotoninicio {
+  	color:#ffffff;
+  }
 
 </style>
 
@@ -129,8 +156,42 @@
 </svelte:head>
 
 
+<section class="bannerinicio">
+		<div class="textoinicio">
+  			<h1 class="titulo">Viveros De Los Santos</h1>
+  			<h5 class="titulo">Los mejores expertos en crecimiento de arboles</h5>
 
-<section class="pidearbol">
+  			<button class="btn btn-success boton" type="submit"><a class="textobotoninicio" href="#infoarboles">¡Conócenos!</a></button>
+  		</div>
+
+</section>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="." on:click={onclick}>Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/arboles" on:click={onclick}>Arboles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contacto" on:click={onclick}>Contacto</a>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+
+
+<section id="infoarboles" class="pidearbol">
 		<div class="container">
 			<div class="row">
 
@@ -145,11 +206,12 @@
 			</div>
 
 
-				<div class="row">
-					<div class="col-sm-12">
-						<p class="nuestrosservicios">Nuestros servicios son faciles y accesibles</p>
-					</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="nuestrosservicios">Descubre los beneficios de comprar un árbol.</p>
 				</div>
+			</div>
+
 				<div class = "container-fluid">
 					<div class="row">
 						<div class="col-sm-3 cuadros">
@@ -186,13 +248,38 @@
 		</div>
 </section>
 
-<section class = "nosotros">
-	<div class="jumbotron">
-		<h1 class="display-4">Sobre nosotros</h1>
-		<p class="lead">Cultivamos árboles de alta calidad desde el 2015.</p>
-		<p>Estamos comprometidos con el medio ambiente.</p>
-		<p>Creemos que un árbol en cada hogar puede hacer toda la diferencia.</p>
+<section class="nosotros">
+	<div class="container">
+		<div class="row">
+
+				<div class="col-sm-12">
+					<h1 class="titulopidearbol">¿Quiénes Somos</h1>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="col-sm-2 offset-sm-5 linea" style="">
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="nuestrosservicios">Empresa dedicada al crecimiento de árboles.</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+				</div>
+				<div class="col-sm-4">
+				</div>
+				<div class="col-sm-4">
+				</div>
+			</div>
 	</div>
+
+	
 </section>
 
 
