@@ -1,26 +1,80 @@
 <script>
     import 'bulma/css/bulma.css'
     import 'bootstrap/dist/css/bootstrap.css'
-    import Level from './subComponents/level.svelte'
+	import Level from './subComponents/level.svelte'
+	import jQuery from 'jquery'
+	import { onMount } from 'svelte';
+
+	
+	
+	//import SmoothScroll from 'smooth-scroll'
+	// Vanilla JavaScript Scroll to Anchor
+// @ https://perishablepress.com/vanilla-javascript-scroll-anchor/
+
+
+ onMount(() => {
+
+	 (function() {
+	scrollTo();
+})();
+	function scrollTo() {
+		const links = document.querySelectorAll('.scroll');
+		links.forEach(each => (each.onclick = scrollAnchors));
+	}
+
+	function scrollAnchors(e, respond = null) {
+		const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+		e.preventDefault();
+		var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
+		const targetAnchor = document.querySelector(targetID);
+		if (!targetAnchor) return;
+		const originalTop = distanceToTop(targetAnchor);
+		window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
+		const checkIfDone = setInterval(function() {
+			const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+			if (distanceToTop(targetAnchor) === 0 || atBottom) {
+				targetAnchor.tabIndex = '-1';
+				targetAnchor.focus();
+				window.history.pushState('', '', targetID);
+				clearInterval(checkIfDone);
+			}
+		}, 100);
+	}
+ })
+	
 </script>
 
 <style>
-
     :global(body) {
         /* this will apply to <body> */
         /* your styles go here */
+		
         
     }
 
+	html {
+		scroll-behavior: smooth;
+		overflow-x: hidden;
+	}
+
+	.module {
+  scroll-behavior: auto
+	}	
+
+	body{
+		scroll-behavior: smooth
+	}
     .pidearbol {
     	padding: 75px;
     	background-color: #f5f5f5;
     	color:#ffffff;
+		
     }
 
     .nosotros {
     	padding: 75px;
     	background-color: #ffffff;
+		
     }
 
 
@@ -94,6 +148,7 @@
 		color: black;
 		text-align: center; 
 		text-align: center;
+		scroll-behavior: smooth
 	}
 
 	.cuadros {
@@ -126,6 +181,7 @@
     background-image: url('https://cdn.shopify.com/s/files/1/0326/7189/files/Untitled_design_7_43cf7dc1-f9f4-4a90-87f6-51e2dfe0040f_2000x.png?v=1563973681');
     background-size: cover;
     background-repeat: no-repeat;
+	
   }
 
   .titulo {
@@ -156,12 +212,13 @@
 </svelte:head>
 
 
+
 <section class="bannerinicio">
 		<div class="textoinicio">
   			<h1 class="titulo">Viveros De Los Santos</h1>
   			<h5 class="titulo">Los mejores expertos en crecimiento de arboles</h5>
 
-  			<button class="btn btn-success boton" type="submit"><a class="textobotoninicio" href="#infoarboles">¡Conócenos!</a></button>
+  			<button class="btn btn-success boton" type="submit"><a class="textobotoninicio scroll" href="#infoarboles">¡Conócenos!</a></button>
   		</div>
 
 </section>
@@ -169,7 +226,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#"></a>
+      <a class="navbar-brand scroll" href="#"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -216,8 +273,8 @@
 					<div class="row">
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
-								<h7>Paga en Línea</h7>
-								<p>Con nuestro portal puedes pagar en línea</p>
+								<h7>Árboles de calidad</h7>
+								<p>Cultivados con cuidado desde el 2015</p>
 							</div>
 						</div>
 
@@ -230,15 +287,15 @@
 		
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
-								<h7>Pago en efectivo</h7>
-								<p>Paga al momento de recibirlo en tu casa</p>
+								<h7>Pago en Línea</h7>
+								<p>Con nuestro portal puedes pagar en línea</p>
 							</div>
 						</div>
 
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
-								<h7>Árboles de calidad</h7>
-								<p>Cultivados con cuidado desde el 2015</p>
+								<h7>Pago en efectivo</h7>
+								<p>Paga al momento de recibirlo en tu casa</p>
 							</div>
 						</div>
 						
