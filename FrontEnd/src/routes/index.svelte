@@ -329,7 +329,7 @@
 		<div class="row">
 
 				<div class="col-sm-12">
-					<h1 class="titulopidearbol">¿Quiénes Somos</h1>
+					<h1 class="titulopidearbol">¿Quiénes Somos?</h1>
 				</div>
 			</div>
 			<div class="row">
@@ -342,6 +342,18 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<p class="nuestrosservicios">Empresa dedicada al crecimiento de árboles.</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="nuestrosservicios">Estamos comrpometidos con el medio ambiente.</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="nuestrosservicios">Creemos que un árbol en cada hogar puede hacer toda la diferencia.</p>
 				</div>
 			</div>
 

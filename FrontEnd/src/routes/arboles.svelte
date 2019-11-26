@@ -4,6 +4,11 @@
 	import Notification from "./subComponents/notification.svelte";
 	import { treeData } from "./subComponents/cartStore.js";
 
+	import 'bulma/css/bulma.css'
+    import 'bootstrap/dist/css/bootstrap.css'
+	import Level from './subComponents/level.svelte'
+	import { onMount } from 'svelte';
+
 	function process(event) {
 		console.log("Arboles");
 		console.log(event.detail);
@@ -14,6 +19,35 @@
 			return tree;
 		})
 	}
+
+	 onMount(() => {
+		(function() {
+		scrollTo();
+	})();
+		function scrollTo() {
+			const links = document.querySelectorAll('.scroll');
+			links.forEach(each => (each.onclick = scrollAnchors));
+		}
+
+		function scrollAnchors(e, respond = null) {
+			const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+			e.preventDefault();
+			var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
+			const targetAnchor = document.querySelector(targetID);
+			if (!targetAnchor) return;
+			const originalTop = distanceToTop(targetAnchor);
+			window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
+			const checkIfDone = setInterval(function() {
+				const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+				if (distanceToTop(targetAnchor) === 0 || atBottom) {
+					targetAnchor.tabIndex = '-1';
+					targetAnchor.focus();
+					window.history.pushState('', '', targetID);
+					clearInterval(checkIfDone);
+				}
+			}, 100);
+		}
+ })
 
 </script>
 
@@ -159,19 +193,19 @@
   			<h1 class="titulo">Viveros De Los Santos</h1>
   			<h5 class="titulo">Los mejores expertos en crecimiento de arboles</h5>
 
-  			<button class="btn btn-success boton" type="submit"><a class="textobotoninicio scroll" href="#infoarboles">¡Conócenos!</a></button>
+  			<button class="btn btn-success boton" type="submit"><a class="textobotoninicio scroll" href="#beneficios">Nuestros árboles</a></button>
   		</div>
-
+	
 </section>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id ="navContainer3">
       <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav2">
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="." on:click={onclick}>Inicio</a>
@@ -203,7 +237,7 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-				<p class="categoriasinfo">Descubre los beneficios de comprar un árbol.</p>		
+				<p id = "beneficios" class="categoriasinfo">Descubre los beneficios de comprar un árbol.</p>		
 			</div>
 		</div>
 
