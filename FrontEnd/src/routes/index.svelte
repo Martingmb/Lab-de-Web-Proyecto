@@ -2,44 +2,39 @@
     import 'bulma/css/bulma.css'
     import 'bootstrap/dist/css/bootstrap.css'
 	import Level from './subComponents/level.svelte'
-	import jQuery from 'jquery'
 	import { onMount } from 'svelte';
 
-	
-	
-	//import SmoothScroll from 'smooth-scroll'
 	// Vanilla JavaScript Scroll to Anchor
 // @ https://perishablepress.com/vanilla-javascript-scroll-anchor/
 
 
  onMount(() => {
+		(function() {
+		scrollTo();
+	})();
+		function scrollTo() {
+			const links = document.querySelectorAll('.scroll');
+			links.forEach(each => (each.onclick = scrollAnchors));
+		}
 
-	 (function() {
-	scrollTo();
-})();
-	function scrollTo() {
-		const links = document.querySelectorAll('.scroll');
-		links.forEach(each => (each.onclick = scrollAnchors));
-	}
-
-	function scrollAnchors(e, respond = null) {
-		const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
-		e.preventDefault();
-		var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
-		const targetAnchor = document.querySelector(targetID);
-		if (!targetAnchor) return;
-		const originalTop = distanceToTop(targetAnchor);
-		window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
-		const checkIfDone = setInterval(function() {
-			const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
-			if (distanceToTop(targetAnchor) === 0 || atBottom) {
-				targetAnchor.tabIndex = '-1';
-				targetAnchor.focus();
-				window.history.pushState('', '', targetID);
-				clearInterval(checkIfDone);
-			}
-		}, 100);
-	}
+		function scrollAnchors(e, respond = null) {
+			const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
+			e.preventDefault();
+			var targetID = (respond) ? respond.getAttribute('href') : this.getAttribute('href');
+			const targetAnchor = document.querySelector(targetID);
+			if (!targetAnchor) return;
+			const originalTop = distanceToTop(targetAnchor);
+			window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
+			const checkIfDone = setInterval(function() {
+				const atBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+				if (distanceToTop(targetAnchor) === 0 || atBottom) {
+					targetAnchor.tabIndex = '-1';
+					targetAnchor.focus();
+					window.history.pushState('', '', targetID);
+					clearInterval(checkIfDone);
+				}
+			}, 100);
+		}
  })
 	
 </script>
@@ -182,7 +177,9 @@
     background-size: cover;
     background-repeat: no-repeat;
 	
+	
   }
+
 
   .titulo {
     text-align: center;
@@ -194,7 +191,29 @@
   	position: relative;
   	top: 50%;
   	transform: translateY(-50%);
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 3s; /* Firefox < 16 */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera < 12.1 */
+            animation: fadein 3s;
   }
+
+	@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+	}
+
+	/* Firefox < 16 */
+	@-moz-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Safari, Chrome and Opera > 12.1 */
+	@-webkit-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
 
   .boton {
   	margin: 10px auto 0px auto;

@@ -20,72 +20,149 @@
 
 <style>
 
-.cateogriasarboles {
-	padding: 75px;
-    background-color: #f5f5f5;
+	.cateogriasarboles {
+		padding: 75px;
+		background-color: #f5f5f5;
+		color:#ffffff;
+	}
+
+	.titulocategorias {
+		text-align: center;
+		font-size: 30px;
+		font-family: Raleway, Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		padding-bottom: 15px;
+		color: #000000;
+	}
+
+	.titulo {
+    text-align: center;
+    margin:auto;
     color:#ffffff;
-}
+  	}	
 
-.titulocategorias {
-	text-align: center;
-	font-size: 30px;
-	font-family: Raleway, Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	padding-bottom: 15px;
-	color: #000000;
-}
+	.linea {
+		border:1px solid gray;
+		margin-bottom: 20px;
+	}
 
-.linea {
-	border:1px solid gray;
-	margin-bottom: 20px;
-}
+	.categoriasinfo {
+		padding: 15px;
+		color: black;
+		text-align: center; 
+		text-align: center;
+	}
 
-.categoriasinfo {
-	padding: 15px;
-	color: black;
-	text-align: center; 
-	text-align: center;
-}
+	.unacategoria {
+		height: 200px;
+		background-color: black;
+		padding: 50px;
+	}
 
-.unacategoria {
-	height: 200px;
-	background-color: black;
-	padding: 50px;
-}
+	.unacategoria > p {
+		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		left:0;
+		right:0;
+		text-align: center;
+		bottom: 40px;
+	}
 
-.unacategoria > p {
-	position: absolute;
-	margin-left: auto;
-	margin-right: auto;
-	left:0;
-	right:0;
-	text-align: center;
-	bottom: 40px;
-}
+	.encinosiempreverde {
+		background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('https://arboleselectos.mx/wp-content/uploads/2019/07/Encino-Siempre-Verde-1.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
 
-.encinosiempreverde {
-	background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('https://arboleselectos.mx/wp-content/uploads/2019/07/Encino-Siempre-Verde-1.jpg');
+	.encinorojo {
+		background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('https://viverolosencinos.com/wp-content/uploads/2017/12/ENCINO-ROJO-5P-5.5-ALTURA-1150x863.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.botonarboles {
+		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		left:0;
+		right:0;
+		text-align: center;
+		bottom: 10px;
+	}
+
+	.bannerinicio {
+    height: 100vh;
+    background-image: url('https://searchengineland.com/figz/wp-content/seloads/2014/11/evergreen-ss-1920-800x450.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-}
+	
+  }
 
-.encinorojo {
-	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('https://viverolosencinos.com/wp-content/uploads/2017/12/ENCINO-ROJO-5P-5.5-ALTURA-1150x863.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+  .boton {
+  	margin: 10px auto 0px auto;
+  	display: block;
+  }
 
-.botonarboles {
-	position: absolute;
-	margin-left: auto;
-	margin-right: auto;
-	left:0;
-	right:0;
-	text-align: center;
-	bottom: 10px;
-}
+
+  .textoinicio {
+  	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+ 	 -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 3s; /* Firefox < 16 */
+        -ms-animation: fadein 3s; /* Internet Explorer */
+         -o-animation: fadein 3s; /* Opera < 12.1 */
+            animation: fadein 3s;
+  }
+
+	@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+	}
+
+	/* Firefox < 16 */
+	@-moz-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+	/* Safari, Chrome and Opera > 12.1 */
+	@-webkit-keyframes fadein {
+		from { opacity: 0; }
+		to   { opacity: 1; }
+	}
+
+  .textobotoninicio {
+  	color:#ffffff;
+  }
+
+  h1, figure, p, h7 {
+		text-align: center;
+		margin: 0 auto;
+		color: white;
+	}
+
+	h1 {
+		font-size: 2.8em;
+		font-family: Lora, serif;
+		text-transform: uppercase;
+		font-weight: 700;
+		margin: 0 0 0.5em 0;
+		color: white;
+	}
 	
 </style>
+
+<section class="bannerinicio">
+		<div class="textoinicio">
+  			<h1 class="titulo">Viveros De Los Santos</h1>
+  			<h5 class="titulo">Los mejores expertos en crecimiento de arboles</h5>
+
+  			<button class="btn btn-success boton" type="submit"><a class="textobotoninicio scroll" href="#infoarboles">¡Conócenos!</a></button>
+  		</div>
+
+</section>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
