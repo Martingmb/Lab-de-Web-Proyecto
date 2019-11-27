@@ -183,7 +183,7 @@
 	}
 
 	h1 {
-		font-size: 2.8em;
+		font-size: 4em;
 		font-family: Lora, serif;
 		text-transform: uppercase;
 		font-weight: 700;
@@ -226,7 +226,7 @@
       </div>
     </nav>
 
-<section class="cateogriasarboles">
+<section class="categoriasarboles">
 	<div class="container">
 
 		<div class="row">
