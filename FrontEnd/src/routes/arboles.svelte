@@ -54,10 +54,15 @@
 
 <style>
 
-	.cateogriasarboles {
+	.categoriasarboles {
 		padding: 75px;
 		background-color: #f5f5f5;
 		color:#ffffff;
+	}
+
+	.catArbol {
+		padding: 40px;
+  
 	}
 
 	.titulocategorias {
@@ -244,12 +249,12 @@
 
 		<div class="row">
 			<div class="col-sm-3 offset-sm-2 unacategoria encinosiempreverde">
-				<p>Encino Siempreverde</p>
+				<p class = "catArbol">Encino Siempreverde</p>
 				<button class="btn btn-success botonarboles" type="submit">Ver Categoria</button>
 			</div>
 
 			<div class="col-sm-3 offset-sm-2 unacategoria encinorojo">
-				<p>Encino Rojo</p>
+				<p class = "catArbol">Encino Rojo</p>
 				<button class="btn btn-success botonarboles" type="submit">Ver Categoria</button>
 			</div>
 		</div>
