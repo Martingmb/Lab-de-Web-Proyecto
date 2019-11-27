@@ -230,8 +230,6 @@
 	<title>Vivero de los Santos</title>
 </svelte:head>
 
-
-
 <section class="bannerinicio">
 		<div class="textoinicio">
   			<h1 class="titulo">Viveros De Los Santos</h1>
@@ -241,8 +239,6 @@
   		</div>
 
 </section>
-
-
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand scroll" href="#"></a>
@@ -347,7 +343,7 @@
 
 			<div class="row">
 				<div class="col-sm-12">
-					<p class="nuestrosservicios">Estamos comrpometidos con el medio ambiente.</p>
+					<p class="nuestrosservicios">Estamos comprometidos con el medio ambiente.</p>
 				</div>
 			</div>
 
