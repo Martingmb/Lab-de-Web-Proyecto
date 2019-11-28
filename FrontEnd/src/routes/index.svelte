@@ -47,6 +47,11 @@
         
     }
 
+	svgImg{
+		height: 10px;
+		vertical-align: top;
+	}
+
 	html {
 		scroll-behavior: smooth;
 		overflow-x: hidden;
@@ -163,6 +168,7 @@
 
 	.adentro > h7{
 		color:black;
+		font-weight: bold;
 	}
 
 	.col {
@@ -288,6 +294,7 @@
 					<div class="row">
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
+								<img class = "svgImg" src = "https://www.svgrepo.com/show/3639/tree.svg">
 								<h7>Árboles de calidad</h7>
 								<p>Cultivados con cuidado desde el 2015</p>
 							</div>
@@ -295,6 +302,7 @@
 
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
+								<img class = "svgImg" src = "https://www.svgrepo.com/show/22694/delivery-truck.svg">							
 								<h7>Nostros lo plantamos</h7>
 								<p>Vamos a tu casa a plantar tu árbol</p>
 							</div>
@@ -302,6 +310,7 @@
 		
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
+								<img class = "svgImg" src = "https://www.svgrepo.com/show/5834/online-pay.svg">							
 								<h7>Pago en Línea</h7>
 								<p>Con nuestro portal puedes pagar en línea</p>
 							</div>
@@ -309,6 +318,7 @@
 
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
+								<img class = "svgImg" src = "https://www.svgrepo.com/show/9952/cash-machine.svg">							
 								<h7>Pago en efectivo</h7>
 								<p>Paga al momento de recibirlo en tu casa</p>
 							</div>
