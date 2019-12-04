@@ -1,19 +1,47 @@
 <script>
-  let name = '';
-  let tel = '';
-  let email = '';
-  let comentario = '';
+	let contact = {
+		name: '',
+		email: '',
+		phone: '',
+		comments: ''
+	}
+	let sent = false;
+	let sending = false;
+	let errMsg = false;
 
-  function handleClick() {
-
-    if(email == '' || name == '' || comentario == '') {
-      alert('¡Necesitas rellenar todos los campos!');
-    } else {
-      alert('¡Gracias por tus comentarios!');
-    }
-
-  }
-
+	function submitForm(){
+		if(sent) return;
+		if(contact.name.length==0 || contact.email.length<5){
+			errMsg = 'Favor de introducir por lo menos el nombre y correo.';
+			return;
+		}
+		errMsg = false;
+		sending = true;
+		const url = 'http://localhost:2020/contact';
+		fetch(url, {
+			method: 'POST',
+			body: JSON.stringify({ ...contact }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(response=>{
+			sending = false;
+			response.json().then(res=>{
+				if(res.error){
+					sending = false;
+					sent = false;
+					errMsg = 'Hubo un error enviando la información';
+					return;
+				}
+				sent = true;
+				sending = false;
+			})
+		}).catch(err=>{
+			sending = false;
+			sent = false;
+			errMsg = 'Hubo un error enviando la información';
+		})
+	}
 </script>
 
 <style>
@@ -142,29 +170,36 @@
 
     <div class="row formadecontacto">
       <div class="col-sm-6"> 
-          <div class="field">
-              <div class="control">
-                <input class="input" type="text" placeholder="Nombre" bind:value={name}>
-               </div>
-          </div>
-          <div class="field">
-              <div class="control">
-                <input class="input" type="text" placeholder="Telefono" bind:value={tel}>
-              </div>
-          </div>           
-          <div class="field">
-              <div class="control">
-                <input class="input" type="email" placeholder="Correo Electrónico" bind:value={email}>
-              
-              </div>
-          </div>
-          <div class="field">
-            <textarea class="textarea" placeholder="Dejanos tus comentarios" bind:value={comentario}></textarea>
-          </div>
-
-
-        <button class="btn btn-primary botoncontacto" type="submit" on:click={handleClick}>Enviar</button>
-
+			{#if !sent}
+				<div class="field">
+					<div class="control">
+						<input class="input" type="text" placeholder="Nombre" bind:value={contact.name}>
+					</div>
+				</div>
+				<div class="field">
+					<div class="control">
+						<input class="input" type="text" placeholder="Telefono" bind:value={contact.phone}>
+					</div>
+				</div>           
+				<div class="field">
+					<div class="control">
+						<input class="input" type="email" placeholder="Correo Electrónico" bind:value={contact.email}>
+					</div>
+				</div>
+				<div class="field">
+					<textarea class="textarea" placeholder="Dejanos tus comentarios" bind:value={contact.comments}></textarea>
+				</div>
+				{#if errMsg}
+					<div class="alert alert-danger" style="margin-top: 10px;">
+						{errMsg}
+					</div>
+				{/if}
+				<button class="btn btn-primary botoncontacto" type="submit" on:click={submitForm}>Enviar</button>
+			{:else}
+				<div class="alert alert-info" style="margin-top: 10px;">
+					¡Gracias por ponerte en contacto con nosotros!
+				</div> 
+			{/if}
       </div>
       <div class="col-sm-6">
         <iframe class="gmaps" src= "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28815.797537515813!2d-100.20473231599998!3d25.472520511191355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662c8c0c7fdb341%3A0x22eddf316bb17a4e!2sEl%20Barrial%2C%2067300%20Santiago%2C%20Nuevo%20Leon!5e0!3m2!1sen!2smx!4v1573689974585!5m2!1sen!2smx" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="">

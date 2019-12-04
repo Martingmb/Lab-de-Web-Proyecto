@@ -7,7 +7,8 @@ var def = {
 		url: 'mongodb://localhost/store',
 		user: '',
 		password: ''
-	}
+	},
+	sendgrid: ''
 }
 
 var p = path.join(__dirname, '..', 'config.json');

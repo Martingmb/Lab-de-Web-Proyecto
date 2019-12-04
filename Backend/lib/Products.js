@@ -19,7 +19,6 @@ async function getProductList(offset=0, count=9999, category=false){
 			where.category = { siempreverde: false, rojo: true }
 		}
 	}
-	console.log(where);
 	var products = await db.Product.find(where).skip(offset).limit(count);
 	return products;
 }

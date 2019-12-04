@@ -311,8 +311,8 @@
 						<div class="col-sm-3 cuadros">
 							<div class="adentro">
 								<img class = "svgImg" src = "https://www.svgrepo.com/show/5834/online-pay.svg">							
-								<h7>Pago en Línea</h7>
-								<p>Con nuestro portal puedes pagar en línea</p>
+								<h7>Catalogo en Línea</h7>
+								<p>Visita nuestro catalogo en línea</p>
 							</div>
 						</div>
 

@@ -1,7 +1,11 @@
 const express = require('express');
 const Products = require('../lib/Products');
 const Codes = require('../Codes');
+const sendgrid = require('@sendgrid/mail')
+const Config = require('../lib/Config')
 var app = express.Router();
+
+sendgrid.setApiKey(Config.sendgrid)
 
 app.post('/products', (req, res)=>{
 	var { offset, count, category } = req.body;
@@ -63,6 +67,28 @@ app.post('/cart', (req, res)=>{
 			});
 		}
 		return res.response(cart);
+	}).catch(err=>{
+		return res.error(Codes.unexpectedError);
+	})
+});
+
+app.post('/contact', (req, res)=>{
+	var { name, email, phone, comments } = req.body;
+	var msg = {
+		to: 'a00819118@itesm.mx',
+		from: 'a00819118@itesm.mx',
+		subject: 'Nuevo formulario de contacto',
+		text: 'Nuevo contacto',
+		html: `<h2>Nuevo contacto</h2>
+		<ol>
+			<li><b>Nombre</b>: ${name}</li>
+			<li><b>Correo</b>: ${email}</li>
+			<li><b>Número</b>: ${phone}</li>
+			<li><b>Comentarios</b>: ${comments}</li>
+		</ol>`
+	}
+	sendgrid.send(msg).then(done=>{
+		return res.response({ sent: true })
 	}).catch(err=>{
 		return res.error(Codes.unexpectedError);
 	})
