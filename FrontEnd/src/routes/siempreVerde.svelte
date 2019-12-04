@@ -1,12 +1,12 @@
 <script>
-    import Productos from "./subComponents/productos.svelte";
+  import Productos from "./subComponents/productos.svelte";
 	import Menu from "./subComponents/asideMenu.svelte";
 	import Notification from "./subComponents/notification.svelte";
 	import { treeData, cartData } from "./subComponents/cartStore.js";
 	import * as sapper from "@sapper/app";
 
 	import 'bulma/css/bulma.css'
-    import 'bootstrap/dist/css/bootstrap.css'
+  import 'bootstrap/dist/css/bootstrap.css'
 	import Level from './subComponents/level.svelte'
 	import { onMount } from 'svelte';
 

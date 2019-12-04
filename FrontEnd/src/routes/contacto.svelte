@@ -1,5 +1,18 @@
 <script>
+  let name = '';
+  let tel = '';
+  let email = '';
+  let comentario = '';
 
+  function handleClick() {
+
+    if(email == '' || name == '' || comentario == '') {
+      alert('¡Necesitas rellenar todos los campos!');
+    } else {
+      alert('¡Gracias por tus comentarios!');
+    }
+
+  }
 
 </script>
 
@@ -131,26 +144,26 @@
       <div class="col-sm-6"> 
           <div class="field">
               <div class="control">
-                <input class="input" type="text" placeholder="Nombre">
+                <input class="input" type="text" placeholder="Nombre" bind:value={name}>
                </div>
           </div>
           <div class="field">
               <div class="control">
-                <input class="input" type="text" placeholder="Telefono">
+                <input class="input" type="text" placeholder="Telefono" bind:value={tel}>
               </div>
           </div>           
           <div class="field">
               <div class="control">
-                <input class="input" type="email" placeholder="Correo Electrónico">
+                <input class="input" type="email" placeholder="Correo Electrónico" bind:value={email}>
               
               </div>
           </div>
           <div class="field">
-            <textarea class="textarea" placeholder="Dejanos tus comentarios"></textarea>
+            <textarea class="textarea" placeholder="Dejanos tus comentarios" bind:value={comentario}></textarea>
           </div>
 
 
-        <button class="btn btn-primary botoncontacto" type="submit">Enviar</button>
+        <button class="btn btn-primary botoncontacto" type="submit" on:click={handleClick}>Enviar</button>
 
       </div>
       <div class="col-sm-6">
