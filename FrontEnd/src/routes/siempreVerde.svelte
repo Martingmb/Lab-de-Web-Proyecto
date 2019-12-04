@@ -14,9 +14,9 @@
 		console.log("Arboles");
     	console.log("Tree Data", event.detail);
 		treeData.update(tree => {
-			tree.treeName = event.detail.name;
-			tree.treePrice = event.detail.price;
-			tree.treeID = event.detail.id;
+			tree.name = event.detail.name;
+			tree.cost = event.detail.cost;
+			tree.id = event.detail.id;
 			return tree;
 		});
 

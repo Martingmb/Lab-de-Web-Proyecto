@@ -6,9 +6,9 @@
 	
 	function addToCart() {
 		dispatch('addToCart', {
-			treeName: data.name,
-			treePrice: data.cost,
-			treeId: data.id
+			id: data.id,
+			name: data.name,
+			cost: data.cost
 		});
 	}
 </script>

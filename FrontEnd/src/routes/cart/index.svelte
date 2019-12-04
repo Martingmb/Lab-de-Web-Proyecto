@@ -33,8 +33,8 @@
           <tbody>
             {#each itemsList as item}
               <tr>
-                <td>{item.treeName}</td>
-                <td>{item.treePrice}</td>    
+                <td>{item.name}</td>
+                <td>{item.price}</td>    
               </tr>
             {/each}
           </tbody>

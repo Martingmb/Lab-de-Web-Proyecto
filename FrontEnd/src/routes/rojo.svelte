@@ -12,9 +12,9 @@
 
    function process(event) {
    	treeData.update(tree => {
-			tree.treeName = event.detail.treeName;
-			tree.treePrice = event.detail.treePrice;
-			tree.treeID = event.detail.treeID;
+			tree.name = event.detail.name;
+			tree.cost = event.detail.cost;
+			tree.id = event.detail.id;
 			return tree;
    	})
   	}

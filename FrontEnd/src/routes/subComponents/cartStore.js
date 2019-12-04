@@ -1,9 +1,9 @@
 import {  writable } from "svelte/store";
 
 export const treeData = writable({
-    treeName: '',
-    treePrice: 0,
-    treeID: ''
+	id: '',
+	name: '',
+	cost: 0,
 });
 
 export const cartData = writable({
