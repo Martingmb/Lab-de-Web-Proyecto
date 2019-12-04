@@ -12,13 +12,13 @@
 
     function process(event) {
 		console.log("Arboles");
-    console.log("Tree Data", event.detail);
+    	console.log("Tree Data", event.detail);
 		treeData.update(tree => {
-      tree.treeName = event.detail.name;
-      tree.treePrice = event.detail.price;
-      tree.treeID = event.detail.id;
+			tree.treeName = event.detail.name;
+			tree.treePrice = event.detail.price;
+			tree.treeID = event.detail.id;
 			return tree;
-    });
+		});
 
 	}
 
