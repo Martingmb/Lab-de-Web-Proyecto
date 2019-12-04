@@ -10,3 +10,12 @@ export const cartData = writable({
     data: [],
     quantity: 0
 });
+
+export const api = {
+    setArbol: (treeData) => {
+        localStorage.setItem('arboles', JSON.stringify(treeData));
+    },
+    getArbol: () => {
+        return localStorage.getItem('arboles');
+    }
+};

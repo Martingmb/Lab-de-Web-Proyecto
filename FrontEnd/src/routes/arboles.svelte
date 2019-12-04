@@ -12,7 +12,7 @@
 
 	function process(event) {
 		console.log("Arboles");
-		console.log(event.detail);
+		console.log("Tree Data", event.detail);
 		treeData.update(tree => {
 			tree.treeName = event.detail.treeName;
 			tree.treePrice = event.detail.treePrice;

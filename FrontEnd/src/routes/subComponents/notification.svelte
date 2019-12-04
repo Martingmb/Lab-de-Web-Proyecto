@@ -1,14 +1,23 @@
 <script>
     import * as sapper from '@sapper/app';
+    import { get } from "svelte/store";
     import { treeData, cartData } from "./cartStore.js";
+
     export let data = [];
     let badgeNumber = data.length;
 
     function process(arr) {
+        console.log("Notification", arr);
+        const value = get(treeData);
+        console.log("Con get de svelte", value);
+        console.log("DATA antes de actualizar data", data);
         data.push(arr);
+        console.log("DATA antes de actualizar cart", data);
         badgeNumber = data.length - 1;
         cartData.update(cart => {
-            cart.data = data;
+            console.log("Cart Data cuando se actualiza", cart.data);
+            cart.data = [... cart.data, value];
+            console.log("DESPUES", cart.data);
             cart.quantity = badgeNumber;
             return cart;
         })
@@ -17,6 +26,7 @@
     const unsub = treeData.subscribe(tree => {
         process(tree);
     })
+
 
     function noItems() {
         alert("There is no items in the cart");

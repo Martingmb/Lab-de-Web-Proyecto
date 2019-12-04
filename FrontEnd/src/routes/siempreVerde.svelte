@@ -2,7 +2,7 @@
     import Productos from "./subComponents/productos.svelte";
 	import Menu from "./subComponents/asideMenu.svelte";
 	import Notification from "./subComponents/notification.svelte";
-	import { treeData } from "./subComponents/cartStore.js";
+	import { treeData, cartData } from "./subComponents/cartStore.js";
 	import * as sapper from "@sapper/app";
 
 	import 'bulma/css/bulma.css'
@@ -12,13 +12,14 @@
 
     function process(event) {
 		console.log("Arboles");
-		console.log(event.detail);
+    console.log("Tree Data", event.detail);
 		treeData.update(tree => {
-			tree.treeName = event.detail.treeName;
-			tree.treePrice = event.detail.treePrice;
-			tree.treeID = event.detail.treeID;
+      tree.treeName = event.detail.name;
+      tree.treePrice = event.detail.price;
+      tree.treeID = event.detail.id;
 			return tree;
-		})
+    });
+
 	}
 
 
