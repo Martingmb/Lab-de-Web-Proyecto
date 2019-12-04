@@ -8,19 +8,25 @@ mongoose.connect(Config.database.url, {
 	authSource: 'admin'
 })
 
-
-const categorySchema = new Schema({
-	name: String,
-	active: Boolean,
-	description: String
-}, { timestamps: true });
 const productSchema = new Schema({
 	name: String,
 	description: String,
 	amount: Number,
 	cost: Number,
-	category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
-	available: Boolean
+	category: {
+		siempreverde: Boolean,
+		rojo: Boolean
+	},
+	origin: String,
+	zone: String,
+	height: String,
+	growth: String,
+	type: String,
+	soil: String,
+	water: String,
+	uses: String,
+	available: Boolean,
+	image: String,
 }, { timestamps: true });
 const orderSchema = new Schema({
 	items: [{
@@ -51,7 +57,6 @@ const adminSchema = new Schema({
 	password: String
 }, { timestamps: true });
 
-var Category = mongoose.model('Category', categorySchema);
 var Product = mongoose.model('Product', productSchema);
 var Order = mongoose.model('Order', orderSchema);
 var Admin = mongoose.model('Admin', adminSchema);
@@ -59,7 +64,6 @@ var Admin = mongoose.model('Admin', adminSchema);
 var toObjectId = id=>mongoose.Types.ObjectId(id);
 
 module.exports = {
-	Category,
 	Product,
 	Order,
 	Admin,

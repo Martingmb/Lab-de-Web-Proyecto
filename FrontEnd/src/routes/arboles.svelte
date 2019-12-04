@@ -258,13 +258,11 @@
 
 		<div class="row">
 			<div class="col-sm-3 offset-sm-2 unacategoria encinosiempreverde">
-				<p class = "catArbol">Encino Siempreverde</p>
-				<button class="btn btn-success botonarboles" type="submit" on:click={onClickSV}>Ver Categoria</button>
+				<button class="btn btn-success botonarboles" type="submit" on:click={onClickSV}>Ver Encino Siempreverde</button>
 			</div>
 
 			<div class="col-sm-3 offset-sm-2 unacategoria encinorojo">
-				<p class = "catArbol">Encino Rojo</p>
-				<button class="btn btn-success botonarboles" type="submit" on:click={onClickR}>Ver Categoria</button>
+				<button class="btn btn-danger botonarboles" type="submit" on:click={onClickR}>Ver Encino Rojo</button>
 			</div>
 		</div>
 	</div>

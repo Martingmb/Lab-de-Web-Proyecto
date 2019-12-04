@@ -10,14 +10,27 @@ async function getAllProducts(){
 	return products;
 }
 
-async function getProductList(offset=0, count=20){
-	var products = await db.Product.find().skip(offset).limit(count);
+async function getProductList(offset=0, count=9999, category=false){
+	var where = {}
+	if(category!==false){
+		if(category==0){
+			where.category = { siempreverde: true, rojo: false };
+		}else{
+			where.category = { siempreverde: false, rojo: true }
+		}
+	}
+	console.log(where);
+	var products = await db.Product.find(where).skip(offset).limit(count);
 	return products;
 }
 
-async function createProduct(name, description, amount, cost, available){
+async function createProduct(name, description, amount, cost, information, available, siempreverde, rojo, image){
 	var newProduct = {
-		name, description, amount, cost, available
+		name, description, amount, cost, available, image, ...information,
+		category: {
+			siempreverde: siempreverde,
+			rojo: rojo
+		}
 	}
 	var np = await db.Product.create(newProduct);
 	return np._id;
@@ -27,10 +40,20 @@ async function deleteProduct(id){
 	return await db.Product.findByIdAndDelete(id);
 }
 
-async function editProduct(id, name, description, amount, cost, available){
+async function editProduct(id, name, description, amount, cost, information, available, siempreverde, rojo){
 	return await db.Product.findByIdAndUpdate(id, {
-		name, description, amount, cost, available
+		name, description, amount, cost, available, ...information,
+		category: {
+			siempreverde: (siempreverde===true),
+			rojo: (rojo===true)
+		}
 	})
+}
+
+async function setImage(id, image){
+	return await db.Product.findByIdAndUpdate(id, {
+		image
+	});
 }
 
 async function searchProduct(query){
@@ -63,5 +86,6 @@ module.exports = {
 	deleteProduct,
 	editProduct,
 	searchProduct,
+	setImage,
 	productsAvailable
 }

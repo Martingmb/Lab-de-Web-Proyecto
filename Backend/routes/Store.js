@@ -4,11 +4,11 @@ const Codes = require('../Codes');
 var app = express.Router();
 
 app.post('/products', (req, res)=>{
-	var { offset, count } = req.body;
+	var { offset, count, category } = req.body;
 	offset = (offset || 0);
-	count = (count || 20);
-	
-	Products.getProductList(offset, count).then(products=>{
+	count = (count || 999999);
+
+	Products.getProductList(offset, count, (typeof req.body.category !== 'undefined' ? req.body.category : false)).then(products=>{
 		return res.response(products);
 	}).catch(err=>{
 		return res.error(Codes.unexpectedError);

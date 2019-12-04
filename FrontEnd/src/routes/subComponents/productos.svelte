@@ -8,58 +8,26 @@
 		dispatch('addToCart', event.detail);
 	}
 
-	let data = [
-		{
-			treeName: 'Arbol 1',
-			treePrice: 10,
-			treeID: 1
-		},
-		{
-			treeName: 'Arbol 2',
-			treePrice: 20,
-			treeID: 2
-		},
-		{
-			treeName: 'Arbol 3',
-			treePrice: 30,
-			treeID: 3
-		},
-		{
-			treeName: 'Arbol 4',
-			treePrice: 40,
-			treeID: 4
-		},
-		{
-			treeName: 'Arbol 5',
-			treePrice: 50,
-			treeID: 5
-		},
-		{
-			treeName: 'Arbol 6',
-			treePrice: 60,
-			treeID: 6
-		},
-		{
-			treeName: 'Arbol 4',
-			treePrice: 40,
-			treeID: 4
-		},
-		{
-			treeName: 'Arbol 5',
-			treePrice: 50,
-			treeID: 5
-		},
-		{
-			treeName: 'Arbol 6',
-			treePrice: 60,
-			treeID: 6
-		}
-	];
-
 	let processedData = [];
 
 	onMount(() => {
-		 processedData = arrayToMatrix(data);
+		fetch('http://localhost:2020/products', {
+			method: 'POST',
+			body: JSON.stringify({
+				category: location.href.endsWith('rojo') ? 1 : 0
+			}),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(response=>{
+			response.json().then(res=>{
+				console.log(res);
+		 		processedData = arrayToMatrix(res.data);
+			})
+		}).catch(err=>{
+			alert("Error consiguiendo productos.");
+		})
+		//  processedData = arrayToMatrix(data);
 	});
 
 	const arrayToMatrix = (arr, columns = 3) => {

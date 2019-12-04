@@ -4,33 +4,53 @@
 
     const dispatch = createEventDispatcher();
 
-    export let treeName = 'Arbol';
-    export let treePrice = 0;
-    export let treeID = 0;
+    export let data = {}
 
     let showModal = false;
 
     function display(event) {
-        dispatch('cartDetail', event.detail);
+   	dispatch('cartDetail', event.detail);
     }
 
 </script>
 
 
 <style>
+	.preview {
+		max-width: 200px;
+		max-height: 200px;
+		width: 100%;
+		height: 100%;
+	}
 
-    .preview {
-        width: 20%;
-        height: 20%;
-    }
+	.arbol {
+		background-color: #ffffff;
+		padding: 10px;
+		margin-top: 15px;
+		width: 200px;
+	}
+
+	.botonarbol {
+		margin-top: 10px;
+	}
+	 
+	.name{
+		font-weight: 600;
+	}
 
 </style>
 
-<img class="preview" src="https://viverolosencinos.com/wp-content/uploads/2018/05/principal.jpeg" alt="arbol" on:click="{() => {showModal = true}}">
+<div class="arbol">
 
-<h3 class="title is-3">Arbol</h3>
+	<img class="preview" src="{data.image}" alt="arbol" >
+	<div class="name">{data.name}</div>
+	<button class="btn btn-success botonarbol" on:click="{() => {showModal = true}}">Ver Arbol</button>
 
-{#if showModal}
-    <Modal treeName={treeName} treePrice={treePrice} treeID={treeID} on:addToCart={display} on:close="{() => showModal = false}"/> 
-{/if}
+	{#if showModal}
+		<Modal data={data} on:addToCart={display} on:close="{() => showModal = false}"/> 
+	{/if}
+</div>
+
+
+
     
