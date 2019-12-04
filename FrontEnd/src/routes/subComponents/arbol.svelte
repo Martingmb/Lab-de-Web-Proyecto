@@ -26,8 +26,10 @@
 	.arbol {
 		background-color: #ffffff;
 		padding: 10px;
+		margin: 10px;
 		margin-top: 15px;
 		width: 200px;
+		height: 300px;
 	}
 
 	.botonarbol {
@@ -41,7 +43,6 @@
 </style>
 
 <div class="arbol">
-
 	<img class="preview" src="{data.image}" alt="arbol" >
 	<div class="name">{data.name}</div>
 	<button class="btn btn-success botonarbol" on:click="{() => {showModal = true}}">Ver Arbol</button>

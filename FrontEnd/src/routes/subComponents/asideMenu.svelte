@@ -16,10 +16,8 @@
 </style>
 
 <aside class="menu">
-
 	<div class="container">
-    	
-			<a class="btn btn-primary boton" style="text-decoration:none;">Precio mas bajo a mas alto</a>
-			<a class="btn btn-primary boton" style="text-decoration:none;">Precio mas alto a mas bajo</a>
+		<a class="btn btn-primary boton" style="text-decoration:none;">Precio mas bajo a mas alto</a>
+		<a class="btn btn-primary boton" style="text-decoration:none;">Precio mas alto a mas bajo</a>
 	</div>
 </aside>

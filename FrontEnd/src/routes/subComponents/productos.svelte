@@ -22,30 +22,12 @@
 		}).then(response=>{
 			response.json().then(res=>{
 				console.log(res);
-		 		processedData = arrayToMatrix(res.data);
+		 		processedData = res.data;
 			})
 		}).catch(err=>{
 			alert("Error consiguiendo productos.");
 		})
-		//  processedData = arrayToMatrix(data);
 	});
-
-	const arrayToMatrix = (arr, columns = 3) => {
-		let matrix = [];
-
-		for (let i = 0, j = -1; i < arr.length; i++) {
-			if(i % columns === 0) {
-				j++;
-				matrix[j] = [];
-			}
-
-			matrix[j].push(arr[i]);
-		}
-
-		return matrix;
-
-	}
-
 
 
 

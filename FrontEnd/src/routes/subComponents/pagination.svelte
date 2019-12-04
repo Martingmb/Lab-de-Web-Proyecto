@@ -1,62 +1,58 @@
 <script>
-  import { onMount, afterUpdate, tick, beforeUpdate } from 'svelte';
-  import { createEventDispatcher } from 'svelte';
-  import Arbol from './arbol.svelte';
-  export let processedData = [];
-  const dispatch = createEventDispatcher();
+  	import { onMount, afterUpdate, tick, beforeUpdate } from 'svelte';
+  	import { createEventDispatcher } from 'svelte';
+  	import Arbol from './arbol.svelte';
+  	export let processedData = [];
+  	const dispatch = createEventDispatcher();
 
-  let numberOfPages = 0;
+	let numberOfPages = 0;
+	let currentPage = 0;
+	let productPerPage = 5;
 
-  function createPagination(data) {
-    console.log(data);
-    numberOfPages = Math.floor(data.length / 3) ; 
-    console.log(numberOfPages);
-  }
-
-  function processEvent(event) {
-    console.log(event.detail);
-    dispatch('addToCart', event.detail);
-  }
-
-  afterUpdate(async () => {
-      // content here
-      await tick();
+	function createPagination(data) {
+		numberOfPages = Math.ceil(data.length / productPerPage) ; 
+	}
+  	afterUpdate(async () => {
+		await tick();
       createPagination(processedData);
-    });
+	});
+
+	function incrementPage(){
+		currentPage = Math.min(numberOfPages-1, currentPage+1)
+	}
+
+	function decrementPage(){
+		currentPage = Math.max(0, currentPage-1)
+	}
+
+	function goPage(p){
+		currentPage = p;
+	}
 
 </script>
 
 <style>
-
-  .notificationnueva {
-    border-radius: 4px;
-    padding: 1.25rem 2.5rem 1.25rem 1.5rem;
-    position: relative;
+  .arboles {
+		display: flex;
+		flex-wrap: wrap;
   }
-  
 </style>
 
-<div class="notificationnueva">
-	<div class="columns">
-		{#each processedData as row}
-		<div class="column">
-			{#each row as element}
-				<Arbol data={element} on:cartDetail={processEvent}/>
-			{/each}
-		</div>
-		{/each}
-	</div>
+<div class="arboles">
+	{#each processedData.slice(currentPage*productPerPage, (currentPage*productPerPage)+productPerPage) as element}
+		<Arbol data={element}/>
+	{/each}
 </div>
 
 <hr>
 
 <nav class="pagination" role="navigation" aria-label="pagination">
-  <a class="pagination-previous btn btn-primary" style="text-decoration:none;" title="This is the first page" disabled>Anterior</a>
-  <a class="pagination-next btn btn-primary" style="text-decoration:none;">Siguiente</a>
+  <div class="pagination-previous btn btn-primary" on:click={()=>decrementPage()}>Anterior</div>
+  <div class="pagination-next btn btn-primary" on:click={()=>incrementPage()}>Siguiente</div>
   <ul class="pagination-list">
     {#each Array(numberOfPages) as _, i}
       <li>
-        <a class="pagination-link is-current" aria-label="Page {i + 1}" aria-current="page">{i + 1}</a>
+        <div class="pagination-link is-current" aria-label="Page {i + 1}" aria-current="page" on:click={()=>goPage(i)}>{i + 1}</div>
       </li>
     {/each}
   </ul>

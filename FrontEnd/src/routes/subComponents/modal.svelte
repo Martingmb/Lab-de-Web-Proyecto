@@ -69,7 +69,7 @@
                         <p> <strong>Usos:</strong> {data.uses}</p>
 								{/if}
                         <hr>
-                        <button class="button is-primary" on:click={addToCart}>Agregar a carrito</button>
+                        <!-- <button class="button is-primary" on:click={addToCart}>Agregar a carrito</button> -->
                         <button class="button is-danger" on:click='{() => dispatch("close")}'>Cerrar</button>
                   </div>
                 </div>
