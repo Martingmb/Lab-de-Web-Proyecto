@@ -56,7 +56,7 @@
 				'Content-Type': 'application/json'
 			}
 		}).then(response=>{
-			console.log(response);
+			deleting = false;
 			response.json().then(res=>{
 				console.log(res);
 				if(res.error){
