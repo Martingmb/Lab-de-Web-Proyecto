@@ -1,26 +1,33 @@
 <script>
 	import * as sapper from '@sapper/app';
 	let username = '', password = '';
-	function gotoPage() {
-		sapper.goto('adminPage')
-	}
-
+	
 	const url = 'http://localhost:2020/admin/login';
 	function login(){
 		fetch(url, {
 			method: 'POST',
-			body: {
+			body: JSON.stringify({
 				email: username,
 				password: password
+			}),
+			headers: {
+				'Content-Type': 'application/json'
 			}
 		}).then(response=>{
 			response.json().then(res=>{
 				console.log(res);
+				if(res.error){
+					alert(res.error.message);
+					return;
+				}
+				localStorage.setItem('auth', JSON.stringify(res.data));
+				sapper.goto('admin')
 			})
 		}).catch(err=>{
 			alert("Error haciendo login.");
 		})
 	}
+
 </script>
 
 <style>
@@ -70,4 +77,3 @@
 		</div>
   	</div>
 </div>
-

@@ -101,10 +101,10 @@ app.post('/products', (req, res)=>{
 });
 
 app.post('/products/add', (req, res)=>{
-	var { name, description, amount, cost, available } = req.body;
+	var { name, description, amount, cost, available, siempreverde, rojo } = req.body;
 	if(!name || !amount || !cost) return res.error(Codes.missingInfo);
 
-	Products.createProduct(name, description,amount, cost, available).then(newProduct=>{
+	Products.createProduct(name, description, amount, cost, available, siempreverde, rojo).then(newProduct=>{
 		return res.response({ id: newProduct });
 	}).catch(err=>{
 		return res.error(Codes.unexpectedError);
@@ -112,15 +112,30 @@ app.post('/products/add', (req, res)=>{
 });
 
 app.post('/products/edit', (req, res)=>{
-	var { id, name, description, amount, cost, available } = req.body;
+	var { id, name, description, amount, cost, available, siempreverde, rojo } = req.body;
 	if(!id || !name || !amount || !cost) return res.error(Codes.missingInfo);
 
-	Products.editProduct(id, name, description, amount, cost, available).then(done=>{
+	Products.editProduct(id, name, description, amount, cost, available, siempreverde, rojo).then(done=>{
 		return res.response({ edited: true });
 	}).catch(err=>{
 		return res.error(Codes.unexpectedError);
 	})
 });
+
+app.post('/products/image', (req, res)=>{
+	var { id, image } = req.body;
+	if(!id, !image) return res.error(Codes.missingInfo);
+	var size = new Buffer(image, 'base64').length/1024;
+	if(size>2048){
+		return res.error(Codes.fileSizeTooLarge)
+	}else{
+		Products.setImage(id, image).then(done=>{
+			return res.response({ edited: true })
+		}).catch(err=>{
+			return res.error(Codes.unexpectedError);
+		})
+	}
+})
 
 app.post('/products/get', (req, res)=>{
 	var { id } = req.body;
@@ -129,6 +144,7 @@ app.post('/products/get', (req, res)=>{
 	Products.getProduct(id).then(product=>{
 		return res.response(product);
 	}).catch(err=>{
+		console.log(err);
 		return res.error(Codes.unexpectedError);
 	})
 });

@@ -15,9 +15,13 @@ async function getProductList(offset=0, count=20){
 	return products;
 }
 
-async function createProduct(name, description, amount, cost, available){
+async function createProduct(name, description, amount, cost, available, siempreverde, rojo){
 	var newProduct = {
-		name, description, amount, cost, available
+		name, description, amount, cost, available,
+		category: {
+			siempreverde: (siempreverde=='true'),
+			rojo: (rojo=='true')
+		}
 	}
 	var np = await db.Product.create(newProduct);
 	return np._id;
@@ -27,10 +31,20 @@ async function deleteProduct(id){
 	return await db.Product.findByIdAndDelete(id);
 }
 
-async function editProduct(id, name, description, amount, cost, available){
+async function editProduct(id, name, description, amount, cost, available, siempreverde, rojo){
 	return await db.Product.findByIdAndUpdate(id, {
-		name, description, amount, cost, available
+		name, description, amount, cost, available,
+		category: {
+			siempreverde: (siempreverde===true),
+			rojo: (rojo===true)
+		}
 	})
+}
+
+async function setImage(id, image){
+	return await db.Product.findByIdAndUpdate(id, {
+		image
+	});
 }
 
 async function searchProduct(query){
@@ -63,5 +77,6 @@ module.exports = {
 	deleteProduct,
 	editProduct,
 	searchProduct,
+	setImage,
 	productsAvailable
 }

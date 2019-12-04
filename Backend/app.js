@@ -4,7 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 var app = express();
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 2020;
 
 app.use(helmet());
 app.use(cors());

@@ -5,6 +5,7 @@ function Code(code, message){
 module.exports = {
 	unexpectedError: Code(001, 'Unexpected error.'),
 	missingInfo: Code(002, 'Falta información para la llamada.'),
+	fileSizeTooLarge: Code(003, 'El tamaño del archivo es muy grande.'),
 
 	incorrectLogin: Code(100, 'Usuario o contraseña incorrecta.'),
 	invalidToken: Code(101, 'Token de usuario invalida.'),
