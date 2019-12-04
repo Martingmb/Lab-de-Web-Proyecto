@@ -8,7 +8,7 @@
 		dispatch('addToCart', event.detail);
 	}
 
-	let processedData = [];
+	let data = [];
 
 	onMount(() => {
 		fetch('http://localhost:2020/products', {
@@ -22,23 +22,15 @@
 		}).then(response=>{
 			response.json().then(res=>{
 				console.log(res);
-		 		processedData = res.data;
+		 		data = res.data;
 			})
 		}).catch(err=>{
 			alert("Error consiguiendo productos.");
 		})
 	});
-
-
-
 </script>
 
 
-
-<style>
-
-</style>
-
 <div class="container">
-	<Pagination processedData={processedData} on:addToCart={process}/>
+	<Pagination data={data} on:addToCart={process}/>
 </div>

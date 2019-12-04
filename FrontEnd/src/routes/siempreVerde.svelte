@@ -113,10 +113,10 @@
           <div class="row">
 
             <div class="col-sm-6">
-              <Menu/>
+              <!-- <Menu/> -->
             </div>
             <div class="offset-sm-4 col-sm-2">
-              <Notification/>
+              <!-- <Notification/> -->
             </div>
 
             

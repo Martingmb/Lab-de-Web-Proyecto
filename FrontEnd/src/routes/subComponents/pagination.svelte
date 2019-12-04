@@ -2,7 +2,7 @@
   	import { onMount, afterUpdate, tick, beforeUpdate } from 'svelte';
   	import { createEventDispatcher } from 'svelte';
   	import Arbol from './arbol.svelte';
-  	export let processedData = [];
+  	export let data = [];
   	const dispatch = createEventDispatcher();
 
 	let numberOfPages = 0;
@@ -14,7 +14,7 @@
 	}
   	afterUpdate(async () => {
 		await tick();
-      createPagination(processedData);
+      createPagination(data);
 	});
 
 	function incrementPage(){
@@ -29,6 +29,12 @@
 		currentPage = p;
 	}
 
+	function sort(dir){
+		console.log(data);
+		data = data.sort((a,b)=>dir==0 ? (a.cost-b.cost) : (b.cost-a.cost))
+		console.log(data);
+	}
+
 </script>
 
 <style>
@@ -38,8 +44,15 @@
   }
 </style>
 
+<aside class="menu">
+	<div class="container">
+		<div class="btn btn-primary boton" on:click={()=>sort(0)}>Precio mas bajo a mas alto</div>
+		<div class="btn btn-primary boton" on:click={()=>sort(1)}>Precio mas alto a mas bajo</div>
+	</div>
+</aside>
+
 <div class="arboles">
-	{#each processedData.slice(currentPage*productPerPage, (currentPage*productPerPage)+productPerPage) as element}
+	{#each data.slice(currentPage*productPerPage, (currentPage*productPerPage)+productPerPage) as element}
 		<Arbol data={element}/>
 	{/each}
 </div>

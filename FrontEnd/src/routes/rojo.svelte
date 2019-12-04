@@ -51,9 +51,10 @@
   }
 
   .categoriasarboles {
-    background-image: url('https://images.pond5.com/beautiful-green-leaves-and-bright-footage-012096746_prevstill.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
+		height: 100%;
+		background-image: url('https://images.pond5.com/beautiful-green-leaves-and-bright-footage-012096746_prevstill.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
   }
 
   .notification {
@@ -112,10 +113,10 @@
           <div class="row">
 
             <div class="col-sm-6">
-              <Menu/>
+              <!-- <Menu/> -->
             </div>
             <div class="offset-sm-4 col-sm-2">
-              <Notification/>
+              <!-- <Notification/> -->
             </div>
 
             
@@ -133,7 +134,7 @@
         
         <div class="column">
             <div class="pagination">
-                <Productos on:addToCart={process}/>
+                <Productos on:addToCart={process} sort/>
             </div>
         </div>
       </div>
