@@ -20,17 +20,34 @@
 <style>
 
     .preview {
-        width: 20%;
-        height: 20%;
+        width: 100%;
+        height: 250px;
+    }
+
+    .arbol {
+        background-color: #ffffff;
+        padding: 10px;
+        margin-top: 15px;
+    }
+
+    .botonarbol {
+        margin-top: 10px;
     }
 
 </style>
 
-<img class="preview" src="https://viverolosencinos.com/wp-content/uploads/2018/05/principal.jpeg" alt="arbol" on:click="{() => {showModal = true}}">
+<div class="arbol">
 
-<h3 class="title is-3">Arbol</h3>
+        <img class="preview" src="https://viverolosencinos.com/wp-content/uploads/2018/05/principal.jpeg" alt="arbol" >
 
-{#if showModal}
-    <Modal treeName={treeName} treePrice={treePrice} treeID={treeID} on:addToCart={display} on:close="{() => showModal = false}"/> 
-{/if}
+        <button class="btn btn-success botonarbol" on:click="{() => {showModal = true}}">Ver Arbol</button>
+
+        {#if showModal}
+        
+        <Modal treeName={treeName} treePrice={treePrice} treeID={treeID} on:addToCart={display} on:close="{() => showModal = false}"/> 
+        {/if}
+</div>
+
+
+
     

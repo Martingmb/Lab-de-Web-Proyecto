@@ -41,6 +41,8 @@
 		position: relative;
 		display: inline-block;
 		border-radius: 2px;
+        right: 0;
+        margin-right: 45px;
 	}
 
 	.notification .badge {
@@ -54,7 +56,6 @@
 	}
 
 	.container {
-		background-color: whitesmoke;
 		border-radius: 1em;
 	}
 </style>

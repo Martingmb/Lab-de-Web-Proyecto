@@ -1,30 +1,67 @@
 <script>
     import Productos from "./subComponents/productos.svelte";
-	import Menu from "./subComponents/asideMenu.svelte";
-	import Notification from "./subComponents/notification.svelte";
-	import { treeData } from "./subComponents/cartStore.js";
-	import * as sapper from "@sapper/app";
+  import Menu from "./subComponents/asideMenu.svelte";
+  import Notification from "./subComponents/notification.svelte";
+  import { treeData } from "./subComponents/cartStore.js";
+  import * as sapper from "@sapper/app";
 
-	import 'bulma/css/bulma.css'
+  import 'bulma/css/bulma.css'
     import 'bootstrap/dist/css/bootstrap.css'
-	import Level from './subComponents/level.svelte'
-	import { onMount } from 'svelte';
-    
+  import Level from './subComponents/level.svelte'
+  import { onMount } from 'svelte';
+
     function process(event) {
-		console.log("Arboles");
-		console.log(event.detail);
-		treeData.update(tree => {
-			tree.treeName = event.detail.treeName;
-			tree.treePrice = event.detail.treePrice;
-			tree.treeID = event.detail.treeID;
-			return tree;
-		})
-	}
+    console.log("Arboles");
+    console.log(event.detail);
+    treeData.update(tree => {
+      tree.treeName = event.detail.treeName;
+      tree.treePrice = event.detail.treePrice;
+      tree.treeID = event.detail.treeID;
+      return tree;
+    })
+  }
+
 
 </script>
 
 <style>
+
+
+
+.titulocategorias {
+    text-align: center;
+    font-size: 30px;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-bottom: 10px;
+    color: #ffffff;
+    margin-top: 25px;
+  }
+
+  .linea {
+    border:1px solid white;
+    margin-bottom: 20px;
+  }
+
+  .categoriasinfo {
+    padding: 15px;
+    color: #ffffff;
+    text-align: center; 
+    text-align: center;
+  }
+
+  .categoriasarboles {
+    background-image: url('https://images.pond5.com/beautiful-green-leaves-and-bright-footage-012096746_prevstill.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .notification {
+    background-color: none !important;
+  }
+
 </style>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id ="navContainer3">
         <a class="navbar-brand" href="#"></a>
@@ -48,31 +85,60 @@
         </div>
   </nav>
 
-<h1>Encino Rojo</h1>
+
+<section class="categoriasarboles">
+
+  <div class="row">
+                <div class="col-sm-12">
+                   <h1 class="titulocategorias">Encino Rojo</h1>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-2 offset-sm-5 linea" style="">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <p id = "beneficios" class="categoriasinfo">Todos nuestros Encinos Rojos.</p>    
+                </div>
+              </div>
+
 
 <div class="container is-fluid">
-    <div class="notification">
+    <div class="">
       <div class="container">
-          <div class="notification">
-              <strong>Catalogo</strong> de arboles disponibles en nuestro vivero.
+          <div class="row">
+
+            <div class="col-sm-6">
+              <Menu/>
+            </div>
+            <div class="offset-sm-4 col-sm-2">
+              <Notification/>
+            </div>
+
+            
+            
           </div>
-          <Notification/>
+
       </div>
   
-      <hr>
+
+
   
       <div class="columns">
-  
-      <div class="column is-one-fifth">
-          <div class="notification">
-              <Menu/>
-          </div>
-      </div>
-      <div class="column">
-          <div class="pagination">
-              <Productos on:addToCart={process}/>
-          </div>
-      </div>
+
+
+        
+        <div class="column">
+            <div class="pagination">
+                <Productos on:addToCart={process}/>
+            </div>
+        </div>
       </div>
     </div>
   </div>
+</section>
+
+

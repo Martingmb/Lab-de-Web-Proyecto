@@ -26,7 +26,17 @@
 
 </script>
 
-<div class="notification">
+<style>
+
+  .notificationnueva {
+    border-radius: 4px;
+    padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+    position: relative;
+  }
+  
+</style>
+
+<div class="notificationnueva">
 	<div class="columns">
 		{#each processedData as row}
 		<div class="column">
@@ -41,8 +51,8 @@
 <hr>
 
 <nav class="pagination" role="navigation" aria-label="pagination">
-  <a class="pagination-previous" title="This is the first page" disabled>Anterior</a>
-  <a class="pagination-next">Siguiente</a>
+  <a class="pagination-previous btn btn-primary" style="text-decoration:none;" title="This is the first page" disabled>Anterior</a>
+  <a class="pagination-next btn btn-primary" style="text-decoration:none;">Siguiente</a>
   <ul class="pagination-list">
     {#each Array(numberOfPages) as _, i}
       <li>

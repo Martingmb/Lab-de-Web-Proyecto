@@ -17,9 +17,15 @@
 </script>
 
 <style>
+
     h1 {
         color: white;
     }
+
+    .imagenarbol {
+
+    }
+
 </style>
 
 
@@ -31,13 +37,14 @@
             <div class="notification">
                 <div class="columns">
                   <div class="column">
-                    <h3 class="title is-3">{treeName}</h3>
-                    <h3 class="title is-3">Precio: ${treePrice}</h3>
-                    <img src="https://viverolosencinos.com/wp-content/uploads/2018/05/principal.jpeg" alt="arbol">
+                    
+                    <img class="imagenarbol" src="https://viverolosencinos.com/wp-content/uploads/2018/05/principal.jpeg" alt="arbol">
                     <hr>
                   </div>
                   <div class="column">
-                        <h3 class="title is-3">Información Encino Siempre Verde</h3>
+                        <h3 class="title is-3">Información Árbol</h3>
+                        <h3 class="title is-3">{treeName}</h3>
+                        <p class="title is-3"><b>Precio:</b> ${treePrice}</p>
                         <p> <strong>Nombre Científico:</strong> Quercus Virginiana </p>
                         <p> <strong>Origen:</strong> Sur de Estados Unidos y Norte </p>
                         <p> <strong>Zona:</strong> 6 a 10 </p>

@@ -4,15 +4,22 @@
 
 <style>
 
+.menu-label {
+	font-weight: bold;
+	padding-left: 25px;
+}
+
+.boton {
+	margin-left: 25px;
+}
 
 </style>
 
 <aside class="menu">
-    <p class="menu-label">
-      Precios
-    </p>
-	<ul class="menu-list">
-	<li><a>Mas bajo a mas alto</a></li>
-	<li><a>Mas alto a mas bajo</a></li>
-	</ul>
+
+	<div class="container">
+    	
+			<a class="btn btn-primary boton" style="text-decoration:none;">Precio mas bajo a mas alto</a>
+			<a class="btn btn-primary boton" style="text-decoration:none;">Precio mas alto a mas bajo</a>
+	</div>
 </aside>
