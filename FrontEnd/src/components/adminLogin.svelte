@@ -35,7 +35,7 @@
 			<div class="container">
 			  <div class="navbar-menu">
 				<div>
-				  <a href="/loginPage" class="button btn btn-primary" on:click={sendMsg}>
+				  <a href="/admin/login" class="button btn btn-primary" on:click={sendMsg}>
 					{buttonText}
 				  </a>
 				</div>
