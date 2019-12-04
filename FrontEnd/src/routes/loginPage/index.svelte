@@ -2,7 +2,7 @@
 	import * as sapper from '@sapper/app';
 	let username = '', password = '';
 	function gotoPage() {
-		sapper.goto('adminPage')
+		sapper.goto('admin')
 	}
 
 	const url = 'http://localhost:2020/admin/login';
