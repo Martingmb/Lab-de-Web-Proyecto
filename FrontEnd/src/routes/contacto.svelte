@@ -92,13 +92,13 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="." on:click={onclick}>Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/arboles" on:click={onclick}>Arboles</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/contacto" on:click={onclick}>Contacto</a>
           </li>
           

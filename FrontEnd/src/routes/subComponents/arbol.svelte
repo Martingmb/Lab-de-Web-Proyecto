@@ -26,7 +26,7 @@
 
 </style>
 
-<img class="preview" src="https://bulma.io/images/placeholders/1280x960.png" alt="arbol" on:click="{() => {showModal = true}}">
+<img class="preview" src="https://viverolosencinos.com/wp-content/uploads/2018/05/principal.jpeg" alt="arbol" on:click="{() => {showModal = true}}">
 
 <h3 class="title is-3">Arbol</h3>
 

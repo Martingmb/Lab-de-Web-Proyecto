@@ -9,7 +9,7 @@
 
   function createPagination(data) {
     console.log(data);
-    numberOfPages = Math.floor(data.length / 3) + 1; 
+    numberOfPages = Math.floor(data.length / 3) ; 
     console.log(numberOfPages);
   }
 
@@ -41,8 +41,8 @@
 <hr>
 
 <nav class="pagination" role="navigation" aria-label="pagination">
-  <a class="pagination-previous" title="This is the first page" disabled>Previous</a>
-  <a class="pagination-next">Next page</a>
+  <a class="pagination-previous" title="This is the first page" disabled>Anterior</a>
+  <a class="pagination-next">Siguiente</a>
   <ul class="pagination-list">
     {#each Array(numberOfPages) as _, i}
       <li>

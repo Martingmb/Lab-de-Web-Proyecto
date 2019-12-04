@@ -3,6 +3,7 @@
 	import Menu from "./subComponents/asideMenu.svelte";
 	import Notification from "./subComponents/notification.svelte";
 	import { treeData } from "./subComponents/cartStore.js";
+	import * as sapper from "@sapper/app";
 
 	import 'bulma/css/bulma.css'
     import 'bootstrap/dist/css/bootstrap.css'
@@ -18,6 +19,14 @@
 			tree.treeID = event.detail.treeID;
 			return tree;
 		})
+	}
+
+	function onClickSV() {
+		sapper.goto('/siempreVerde');
+	}
+
+	function onClickR() {
+		sapper.goto('/rojo');
 	}
 
 	 onMount(() => {
@@ -212,10 +221,10 @@
 
       <div class="collapse navbar-collapse" id="navbarNav2">
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="." on:click={onclick}>Inicio</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/arboles" on:click={onclick}>Arboles</a>
           </li>
           <li class="nav-item">
@@ -224,7 +233,7 @@
           
         </ul>
       </div>
-    </nav>
+</nav>
 
 <section class="categoriasarboles">
 	<div class="container">
@@ -250,12 +259,12 @@
 		<div class="row">
 			<div class="col-sm-3 offset-sm-2 unacategoria encinosiempreverde">
 				<p class = "catArbol">Encino Siempreverde</p>
-				<button class="btn btn-success botonarboles" type="submit">Ver Categoria</button>
+				<button class="btn btn-success botonarboles" type="submit" on:click={onClickSV}>Ver Categoria</button>
 			</div>
 
 			<div class="col-sm-3 offset-sm-2 unacategoria encinorojo">
 				<p class = "catArbol">Encino Rojo</p>
-				<button class="btn btn-success botonarboles" type="submit">Ver Categoria</button>
+				<button class="btn btn-success botonarboles" type="submit" on:click={onClickR}>Ver Categoria</button>
 			</div>
 		</div>
 	</div>
