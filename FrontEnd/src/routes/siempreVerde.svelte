@@ -52,9 +52,10 @@
   }
 
   .categoriasarboles {
-    background-image: url('https://images.pond5.com/beautiful-green-leaves-and-bright-footage-012096746_prevstill.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
+		height: 100%;
+		background-image: url('https://images.pond5.com/beautiful-green-leaves-and-bright-footage-012096746_prevstill.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
   }
 
   .notification {
