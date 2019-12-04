@@ -2,7 +2,7 @@
 	import * as sapper from '@sapper/app';
 	import { onMount } from 'svelte';
 
-	let products = [];
+	let users = [];
 	let auth = false;
 	let deleting = false;
 	
@@ -13,11 +13,11 @@
 		}
 		auth = JSON.parse(a);
 
-		getProducts();
+		getUsers();
 	});
 
-	const url = 'http://localhost:2020/admin/products';
-	function getProducts(){
+	const url = 'http://localhost:2020/admin/users';
+	function getUsers(){
 		fetch(url, {
 			method: 'POST',
 			body: JSON.stringify({ token: auth.token }),
@@ -36,17 +36,17 @@
 					alert(res.error.message);
 					return;
 				}
-				products = res.data;
+				users = res.data;
 			})
 		}).catch(err=>{
 			alert("Error haciendo login.");
 		})
 	}
 
-	const url_delete = 'http://localhost:2020/admin/products/delete';
-	function deleteProduct(name, id){
+	const url_delete = 'http://localhost:2020/admin/users/delete';
+	function deleteAdmin(name, id){
 		if(deleting) return;
-		var d = confirm('¿Deseas borrar el producto ' + name + '?');
+		var d = confirm('¿Deseas borrar el usuario ' + name + '?');
 		if(!d) return;
 		deleting = true;
 		fetch(url_delete, {
@@ -69,8 +69,8 @@
 					return;
 				}
 				if(res.data.deleted){
-					products = [];
-					getProducts();
+					users = [];
+					getUsers();
 				}
 			})
 		}).catch(err=>{
@@ -96,30 +96,25 @@
 </style>
 
 <div class="container">
-	<div class="header">Administrador</div>
-	<a class="btn btn-success" href="/admin/add">Agregar producto</a>
-	<a class="btn btn-primary" href="/admin/admins">Ver Usuarios</a>
+	<div class="header">Administrador de Usuarios</div>
+	<a class="btn btn-success" href="/admin/admins/add">Agregar usuario</a>
 </div>
 
 <table class="table">
 	<thead>
 		<tr>
 			<th>Nombre</th>
-			<th>Costo</th>
-			<th>Editar</th>
+			<th>Correo</th>
 			<th>Borrar</th>
 		</tr>
 	</thead>
 	<tbody>
-		{#each products as p}
+		{#each users as u}
 			<tr>
-				<th scope="row">{p.name}</th>
-				<td>${p.cost}</td>
+				<th scope="row">{u.name}</th>
+				<td>{u.email}</td>
 				<td>
-					<a class="btn btn-secondary" href="/admin/product/{p._id}">Editar</a>
-				</td>
-				<td>
-					<div class="btn btn-danger" on:click={()=>deleteProduct(p.name, p._id)}>Borrar</div>
+					<div class="btn btn-danger" on:click={()=>deleteAdmin(u.name, u._id)}>Borrar</div>
 				</td>
 			</tr>
 		{/each}
