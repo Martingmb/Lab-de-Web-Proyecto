@@ -5,11 +5,6 @@
     const dispatch = createEventDispatcher();
 
 	let adminButton = false;
-	let text = 'Inicio de Sesion';
-
-	function loginPage(event) {
-		adminButton = event.detail.clicked;
-	}
 
 </script>
 
@@ -24,7 +19,7 @@
 	}
 </style>
 
-<AdminLogin on:message={loginPage} buttonText={text}/>
+<AdminLogin/>
 
 {#if !adminButton} 
 	<Banner/>
