@@ -41,7 +41,7 @@
 		{#each processedData as row}
 		<div class="column">
 			{#each row as element}
-				<Arbol treeName={element.treeName} treeID={element.treeID} treePrice={element.treePrice} on:cartDetail={processEvent}/>
+				<Arbol data={element} on:cartDetail={processEvent}/>
 			{/each}
 		</div>
 		{/each}

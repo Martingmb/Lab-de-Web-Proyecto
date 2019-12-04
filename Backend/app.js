@@ -8,8 +8,8 @@ var port = process.env.PORT || 2020;
 
 app.use(helmet());
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
+app.use(bodyParser.json({ limit: '10mb' }));
 app.listen(port);
 
 app.use((req, res, next)=>{

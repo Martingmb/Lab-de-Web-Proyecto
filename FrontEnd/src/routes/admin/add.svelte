@@ -11,6 +11,16 @@
 		category: {
 			siempreverde: false,
 			rojo: false
+		},
+		information: {
+			origin: '',
+			zone: '',
+			height: '',
+			growth: '',
+			type: '',
+			soil: '',
+			water: '',
+			uses: ''
 		}
 	}
 
@@ -40,13 +50,20 @@
 	});
 
 	function saveProduct(){
-		if(product.name.length<5 || isNaN(product.cost)) return;
+		if(product.name.length<5 || isNaN(product.cost)){
+			errMsg = 'Favor de llenar por lo menos el nombre y costo.'
+			return
+		}
 
 		product.available = document.getElementById('available').checked
 		product.category.siempreverde = document.getElementById('siempreverde').checked
 		product.category.rojo = document.getElementById('rojo').checked
 
-		if((product.category.siempreverde && product.category.rojo)){
+		if(!product.category.siempreverde && !product.category.rojo){
+			errMsg = 'Favor de seleccionar una categoría'
+			return
+		}
+		if(product.category.siempreverde && product.category.rojo){
 			errMsg = 'Favor de seleccionar solo una categoría'
 			return
 		}
@@ -84,6 +101,10 @@
 </script>
 
 <style>
+	.messages{
+		max-width: 600px;
+		margin: auto;
+	}
 	.container{
 		display: flex;
 		justify-content: center;
@@ -113,6 +134,18 @@
 
 <div class="header">
 	Agregar Producto
+</div>
+<div class="messages">
+	{#if sending}
+		<div class="alert alert-info" style="margin-top: 10px;">
+			Agregando producto...
+		</div>
+	{/if}
+	{#if errMsg}
+		<div class="alert alert-danger" style="margin-top: 10px;">
+			{errMsg}
+		</div>
+	{/if}
 </div>
 <div class="container">
 	<div class="left">
@@ -163,18 +196,60 @@
 				Encino Rojo
 			</label>
 		</div>
+		
+		<hr>
+		<div style="font-size: 20px; font-weight: 600;">Información</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Origen</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Origen" bind:value={product.information.origin}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Zona</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Zona" bind:value={product.information.zone}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Altura</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Altura" bind:value={product.information.height}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Crecimiento</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Crecimiento" bind:value={product.information.growth}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Tipo</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Tipo" bind:value={product.information.type}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Suelo</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Suelo" bind:value={product.information.soil}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Agua</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Agua" bind:value={product.information.water}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Usos</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Usos" bind:value={product.information.uses}>
+		</div>
+
 		<div style="display: flex; justify-content: flex-end; margin-top: 10px;">
 			<div class="btn btn-success" on:click={saveProduct}>Guardar</div>
 		</div>
-		{#if sending}
-			<div class="alert alert-info" style="margin-top: 10px;">
-				Agregando producto...
-			</div>
-		{/if}
-		{#if errMsg}
-			<div class="alert alert-danger" style="margin-top: 10px;">
-				{errMsg}
-			</div>
-		{/if}
 	</div>
 </div>

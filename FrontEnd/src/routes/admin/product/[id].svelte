@@ -11,7 +11,9 @@
 	import * as sapper from '@sapper/app';
 	import { onMount } from 'svelte';
 
-	let product = {};
+	let product = {
+
+	};
 	let auth = false;
 	let edited = false;
 	let sending = false;
@@ -77,6 +79,24 @@
 
 		var sv = document.getElementById('siempreverde').checked
 		var rojo = document.getElementById('rojo').checked
+		if(!sv && !rojo){
+			alert("Favor de seleccionar una categoría.");
+			return;
+		}
+		if(sv && rojo){
+			alert("Favor de seleccionar solo una categoría.");
+			return;
+		}
+		product.information = {
+			origin: product.origin,
+			zone: product.zone,
+			height: product.height,
+			growth: product.growth,
+			type: product.type,
+			soil: product.soil,
+			water: product.water,
+			uses: product.uses
+		}
 		edited = false;
 		
 		fetch(url_edit, {
@@ -156,6 +176,10 @@
 </script>
 
 <style>
+	.messages{
+		max-width: 600px;
+		margin: auto;
+	}
 	.container{
 		display: flex;
 		justify-content: center;
@@ -178,6 +202,18 @@
 	<title>Editar Producto - Vivero Admin</title>
 </svelte:head>
 
+<div class="messages">
+	{#if edited}
+	<div class="alert alert-success" style="margin-top: 10px;">
+		Se ha editado el producto.
+	</div>
+	{/if}
+	{#if sending}
+	<div class="alert alert-info" style="margin-top: 10px;">
+		Enviado imagen...
+	</div>
+	{/if}
+</div>
 <div class="container">
 	<div class="left">
 		{#if !product || !product.image}
@@ -227,18 +263,58 @@
 				Encino Rojo
 			</label>
 		</div>
+		<hr>
+		<div style="font-size: 20px; font-weight: 600;">Información</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Origen</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Origen" bind:value={product.origin}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Zona</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Zona" bind:value={product.zone}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Altura</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Altura" bind:value={product.height}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Crecimiento</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Crecimiento" bind:value={product.growth}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Tipo</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Tipo" bind:value={product.type}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Suelo</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Suelo" bind:value={product.soil}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Agua</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Agua" bind:value={product.water}>
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Usos</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Usos" bind:value={product.uses}>
+		</div>
 		<div style="display: flex; justify-content: flex-end; margin-top: 10px;">
 			<div class="btn btn-success" on:click={saveProduct}>Guardar</div>
 		</div>
-		{#if edited}
-			<div class="alert alert-success" style="margin-top: 10px;">
-				Se ha editado el producto.
-			</div>
-		{/if}
-		{#if sending}
-			<div class="alert alert-info" style="margin-top: 10px;">
-				Enviado imagen...
-			</div>
-		{/if}
 	</div>
 </div>

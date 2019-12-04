@@ -101,21 +101,22 @@ app.post('/products', (req, res)=>{
 });
 
 app.post('/products/add', (req, res)=>{
-	var { name, description, amount, cost, available, siempreverde, rojo, image } = req.body;
+	var { name, description, amount, cost, available, siempreverde, rojo, image, information } = req.body;
 	if(!name || !amount || !cost) return res.error(Codes.missingInfo);
 
-	Products.createProduct(name, description, amount, cost, available, siempreverde, rojo, image).then(newProduct=>{
+	Products.createProduct(name, description, amount, cost, information, available, siempreverde, rojo, image).then(newProduct=>{
 		return res.response({ id: newProduct });
 	}).catch(err=>{
+		console.log(err);
 		return res.error(Codes.unexpectedError);
 	})
 });
 
 app.post('/products/edit', (req, res)=>{
-	var { id, name, description, amount, cost, available, siempreverde, rojo } = req.body;
+	var { id, name, description, amount, cost, available, siempreverde, rojo, information } = req.body;
 	if(!id || !name || !amount || !cost) return res.error(Codes.missingInfo);
 
-	Products.editProduct(id, name, description, amount, cost, available, siempreverde, rojo).then(done=>{
+	Products.editProduct(id, name, description, amount, cost, information, available, siempreverde, rojo).then(done=>{
 		return res.response({ edited: true });
 	}).catch(err=>{
 		return res.error(Codes.unexpectedError);
@@ -150,7 +151,6 @@ app.post('/products/get', (req, res)=>{
 });
 
 app.post('/products/delete', (req, res)=>{
-	console.log(req.body);
 	var { id } = req.body;
 	if(!id) return res.error(Codes.missingInfo);
 

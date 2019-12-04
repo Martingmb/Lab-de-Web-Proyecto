@@ -2,9 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    export let treeName = 'Arbol';
-    export let treePrice = 0;
-    export let treeID = 0;
+    export let data = {}
 
     function addToCart() {
         dispatch('addToCart', {
@@ -37,24 +35,39 @@
             <div class="notification">
                 <div class="columns">
                   <div class="column">
-                    
-                    <img class="imagenarbol" src="https://viverolosencinos.com/wp-content/uploads/2018/05/principal.jpeg" alt="arbol">
+						  {#if data.image}
+                  	<img class="imagenarbol" src="{data.image}" alt="arbol">
+						  {/if}
                     <hr>
                   </div>
                   <div class="column">
                         <h3 class="title is-3">Información Árbol</h3>
-                        <h3 class="title is-3">{treeName}</h3>
-                        <p class="title is-3"><b>Precio:</b> ${treePrice}</p>
-                        <p> <strong>Nombre Científico:</strong> Quercus Virginiana </p>
-                        <p> <strong>Origen:</strong> Sur de Estados Unidos y Norte </p>
-                        <p> <strong>Zona:</strong> 6 a 10 </p>
-                        <p> <strong>Altura:</strong> Hasta 20m </p>
-                        <p> <strong>Crecimiento:</strong> Moderado a rapido </p>
-                        <p> <strong>Tipo de arbol:</strong> Copa redonda muy frondoso </p>
-                        <p> <strong>Suelo:</strong> Cualquier Tipo </p>
-                        <p> <strong>Temperatura:</strong> -20 a 40°C </p>
-                        <p> <strong>Agua:</strong> Riego abundante, espaciados de 7 a 15 días </p>
-                        <p> <strong>Usos:</strong> Madera resistente para la elaboración de pisos y sus frutas para alimento de la fauna silvestre.Las raíces producen tubérculos comestibles. </p>
+                        <h3 class="title is-3">{data.name}</h3>
+								<p class="title is-3"><b>Precio:</b> ${data.cost}</p>
+								{#if data.origin}
+                        <p> <strong>Origen:</strong> {data.origin}</p>
+								{/if}
+								{#if data.zone}
+                        <p> <strong>Zona:</strong> {data.zone}</p>
+								{/if}
+								{#if data.height}
+                        <p> <strong>Altura:</strong> {data.height}</p>
+								{/if}
+								{#if data.growth}
+                        <p> <strong>Crecimiento:</strong> {data.growth}</p>
+								{/if}
+								{#if data.type}
+                        <p> <strong>Tipo de arbol:</strong> {data.type}</p>
+								{/if}
+								{#if data.soil}
+                        <p> <strong>Suelo:</strong> {data.soil}</p>
+								{/if}
+								{#if data.water}
+                        <p> <strong>Agua:</strong> {data.water}</p>
+								{/if}
+								{#if data.uses}
+                        <p> <strong>Usos:</strong> {data.uses}</p>
+								{/if}
                         <hr>
                         <button class="button is-primary" on:click={addToCart}>Agregar a carrito</button>
                         <button class="button is-danger" on:click='{() => dispatch("close")}'>Cerrar</button>

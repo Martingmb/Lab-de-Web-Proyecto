@@ -17,6 +17,14 @@ const productSchema = new Schema({
 		siempreverde: Boolean,
 		rojo: Boolean
 	},
+	origin: String,
+	zone: String,
+	height: String,
+	growth: String,
+	type: String,
+	soil: String,
+	water: String,
+	uses: String,
 	available: Boolean,
 	image: String,
 }, { timestamps: true });
