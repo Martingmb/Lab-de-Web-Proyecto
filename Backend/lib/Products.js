@@ -15,9 +15,9 @@ async function getProductList(offset=0, count=20){
 	return products;
 }
 
-async function createProduct(name, description, amount, cost, available, siempreverde, rojo){
+async function createProduct(name, description, amount, cost, available, siempreverde, rojo, image){
 	var newProduct = {
-		name, description, amount, cost, available,
+		name, description, amount, cost, available, image,
 		category: {
 			siempreverde: (siempreverde=='true'),
 			rojo: (rojo=='true')

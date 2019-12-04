@@ -101,10 +101,10 @@ app.post('/products', (req, res)=>{
 });
 
 app.post('/products/add', (req, res)=>{
-	var { name, description, amount, cost, available, siempreverde, rojo } = req.body;
+	var { name, description, amount, cost, available, siempreverde, rojo, image } = req.body;
 	if(!name || !amount || !cost) return res.error(Codes.missingInfo);
 
-	Products.createProduct(name, description, amount, cost, available, siempreverde, rojo).then(newProduct=>{
+	Products.createProduct(name, description, amount, cost, available, siempreverde, rojo, image).then(newProduct=>{
 		return res.response({ id: newProduct });
 	}).catch(err=>{
 		return res.error(Codes.unexpectedError);
@@ -150,6 +150,7 @@ app.post('/products/get', (req, res)=>{
 });
 
 app.post('/products/delete', (req, res)=>{
+	console.log(req.body);
 	var { id } = req.body;
 	if(!id) return res.error(Codes.missingInfo);
 
