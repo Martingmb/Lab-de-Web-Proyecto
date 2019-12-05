@@ -1,8 +1,8 @@
 <script>
 	import Productos from "./subComponents/productos.svelte";
+	import Pagination from "./subComponents/Pagination.svelte";
 	import Menu from "./subComponents/asideMenu.svelte";
 	import Notification from "./subComponents/notification.svelte";
-	import { treeData } from "./subComponents/cartStore.js";
 	import * as sapper from "@sapper/app";
 
 	import 'bulma/css/bulma.css'
@@ -10,14 +10,20 @@
 	import Level from './subComponents/level.svelte'
 	import { onMount } from 'svelte';
 
-   function process(event) {
-   	treeData.update(tree => {
-			tree.name = event.detail.name;
-			tree.cost = event.detail.cost;
-			tree.id = event.detail.id;
-			return tree;
-   	})
-  	}
+
+	let cart_count = 0;
+
+	onMount(()=>{
+		var c = localStorage.getItem('cart');
+		if(c && c!=null){
+			c = JSON.parse(c);
+			cart_count = c.length;
+		}
+	})
+
+	function cartCountChange(e){
+		cart_count = e.detail
+	}
 </script>
 
 <style>
@@ -97,14 +103,14 @@
           	<div class="row">
 					<div class="col-sm-6"></div>
 					<div class="offset-sm-4 col-sm-2">
-						<Notification />
+						<Notification data={cart_count} />
 					</div>
           	</div>
       </div>
       <div class="columns">
 			<div class="column">
 				<div class="pagination">
-					<Productos on:addToCart={process}/>
+					<Pagination on:cartCount={cartCountChange}/>
 				</div>
 			</div>
 		</div>

@@ -32,5 +32,5 @@
 
 
 <div class="container">
-	<Pagination data={data} on:addToCart={process}/>
+	<!-- <Pagination data={data} on:addToCart={process}/> -->
 </div>

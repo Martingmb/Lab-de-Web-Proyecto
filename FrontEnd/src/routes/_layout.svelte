@@ -2,14 +2,11 @@
 	import { createEventDispatcher } from "svelte";
 	import Banner from '../components/Banner.svelte';
 	import AdminLogin from '../components/adminLogin.svelte';
-    const dispatch = createEventDispatcher();
-
+	const dispatch = createEventDispatcher();
 	let adminButton = false;
-
 </script>
 
 <style>
-
 	main {
 		position: relative;
 		max-width: 100%;
@@ -19,7 +16,6 @@
 	}
 </style>
 
-<AdminLogin/>
 
 {#if !adminButton} 
 	<Banner/>

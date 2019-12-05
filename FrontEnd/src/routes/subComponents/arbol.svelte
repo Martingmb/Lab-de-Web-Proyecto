@@ -1,16 +1,14 @@
 <script>
 	import Modal from './modal.svelte';
 	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 
 	export let data = {}
-	const dispatch = createEventDispatcher();
 	let showModal = false;
 
-	function display(event) {
-		console.log(event.detail);
-		dispatch('cartDetail', event.detail);
+	function cartCountChange(e){
+		dispatch('cartCount', e.detail)
 	}
-	
 </script>
 
 
@@ -47,6 +45,6 @@
 	<button class="btn btn-success botonarbol" on:click="{() => {showModal = true}}">Ver Arbol</button>
 	
 	{#if showModal}
-		<Modal data={data} on:addToCart={display} on:close="{() => showModal = false}"/> 
+		<Modal data={data} on:close="{() => showModal = false}" on:cartCount={cartCountChange}/> 
 	{/if}
 </div>

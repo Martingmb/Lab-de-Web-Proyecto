@@ -1,16 +1,26 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
-	
 	export let data = {}
-	
-	function addToCart() {
-		dispatch('addToCart', {
-			id: data.id,
-			name: data.name,
-			cost: data.cost
-		});
-	}
+
+	function addToCart(){
+		var cart = localStorage.getItem('cart');
+		if(cart && cart!=null) cart = JSON.parse(cart);
+		else cart = []
+		var ix = cart.length==0 ? -1 : cart.findIndex(a=>a.id==data._id);
+		if(ix!=-1){
+			cart[ix].quantity = cart[ix].quantity+1;
+		}else{
+			cart.push({
+				id: data._id,
+				quantity: 1,
+				name: data.name,
+				cost: data.cost
+			})
+		}
+		localStorage.setItem('cart', JSON.stringify(cart));
+		dispatch('cartCount', cart.length);
+	}	
 </script>
 
 <style>

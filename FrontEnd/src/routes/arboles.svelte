@@ -2,24 +2,13 @@
 	import Productos from "./subComponents/productos.svelte";
 	import Menu from "./subComponents/asideMenu.svelte";
 	import Notification from "./subComponents/notification.svelte";
-	import { treeData } from "./subComponents/cartStore.js";
 	import * as sapper from "@sapper/app";
 
 	import 'bulma/css/bulma.css'
-    import 'bootstrap/dist/css/bootstrap.css'
+	import 'bootstrap/dist/css/bootstrap.css'
 	import Level from './subComponents/level.svelte'
 	import { onMount } from 'svelte';
 
-	function process(event) {
-		console.log("Arboles");
-		console.log("Tree Data", event.detail);
-		treeData.update(tree => {
-			tree.name = event.detail.name;
-			tree.cost = event.detail.cost;
-			tree.id = event.detail.id;
-			return tree;
-		})
-	}
 
 	function onClickSV() {
 		sapper.goto('/siempreVerde');
@@ -29,7 +18,7 @@
 		sapper.goto('/rojo');
 	}
 
-	 onMount(() => {
+	onMount(() => {
 		(function() {
 		scrollTo();
 	})();
@@ -268,32 +257,4 @@
 		</div>
 	</div>
 </section>
-<!--
-<div class="container is-fluid">
-  <div class="notification">
-	<div class="container">
-		<div class="notification">
-			<strong>Catalogo</strong> de arboles disponibles en nuestro vivero.
-		</div>
-		<Notification/>
-	</div>
-
-	<hr>
-
-	<div class="columns">
-
-	<div class="column is-one-fifth">
-		<div class="notification">
-			<Menu/>
-		</div>
-	</div>
-	<div class="column">
-		<div class="pagination">
-			<Productos on:addToCart={process}/>
-		</div>
-	</div>
-	</div>
-  </div>
-</div>
--->
 
