@@ -39,6 +39,8 @@ const orderSchema = new Schema({
 	name: String,
 	email: String,
 	paid: Boolean,
+	fulfilled: Boolean,
+	cancelled: Boolean,
 	address: {
 		street: String,
 		number_interior: String,

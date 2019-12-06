@@ -1,7 +1,9 @@
 const db = require('./Database');
 
-async function getOrder(id){
-	var order = await db.Order.findById(id, { _id: 0 }).select('items total paid createdAt').populate('items.product', 'name');
+async function getOrder(id, complete=false){
+	var addr_query = complete ? 'address' : 'address.city address.zipcode';
+	var order = await db.Order.findById(id, { _id: 0 }).select('items total paid createdAt email name fulfilled cancelled ' + addr_query).populate('items.product', 'name');
+	// console.log(order);
 	order.id = id;
 	var items = []
 	for(var i of order.items){
@@ -18,7 +20,12 @@ async function getOrder(id){
 		items,
 		total: order.total,
 		paid: order.paid,
-		createdAt: order.createdAt
+		createdAt: order.createdAt,
+		email: order.email,
+		name: order.name,
+		address: order.address,
+		fulfilled: order.fulfilled,
+		cancelled: order.cancelled
 	}
 	return o;
 }
@@ -27,7 +34,7 @@ function cancelOrder(id){
 	return db.Order.findByIdAndDelete(id);
 }
 
-async function createOrder(name, email, items){
+async function createOrder(items){
 	if(items.length==0) return false;
 	var products = await db.Product.find({ '_id': { $in: items.map(a=>db.toObjectId(a.id)) } });
 	var order_items = [];
@@ -37,32 +44,33 @@ async function createOrder(name, email, items){
 		if(!prod) continue;
 		order_items.push({
 			product: prod._id,
-			quantity: i.amount,
+			name: prod.name,
+			quantity: i.quantity,
 			cost: parseFloat(prod.cost),
-			total: parseFloat(prod.cost)*parseInt(i.amount)
+			total: parseFloat(prod.cost)*parseInt(i.quantity)
 		});
-		total += parseFloat(prod.cost)*parseInt(i.amount);
+		total += parseFloat(prod.cost)*parseInt(i.quantity);
 	}
 	if(order_items.length==0) return false;
 
 	var newOrder = {
 		items: order_items,
 		total,
-		name,
-		email,
-		paid: 0,
-		address: null
+		paid: false,
+		cancelled: false,
+		address: null,
+		fulfilled: false,
 	}
 	var order = await db.Order.create(newOrder);
 	return { id: order._id, ...newOrder };
 }
 
-function setAddress(id, street, number_interior, number_exterior, neighbohood, city, zipcode, state, country, phone){
+function setAddress(id, name, email, street, number_interior, number_exterior, neighborhood, city, zipcode, state, country, phone){
 	var address = {
 		street, number_interior, number_exterior,
-		neighbohood, city, zipcode, state, country, phone
+		neighborhood, city, zipcode, state, country, phone,
 	};
-	return db.Order.findByIdAndUpdate(id, { address });
+	return db.Order.findByIdAndUpdate(id, { address, name, email, paid: true });
 }
 
 function getOrderSimple(id, select=false){
@@ -73,9 +81,16 @@ function getOrderSimple(id, select=false){
 	}
 }
 
+async function orderFulfilled(id){
+	return await db.Order.findByIdAndUpdate(id, { fulfilled: true });
+}
 
-function orderPaid(id){
+async function getFulfulledOrders(){
+	return await db.Order.find({ fulfilled: true, cancelled: false });
+}
 
+async function getMissingOrders(){
+	return await db.Order.find({ fulfilled: false, cancelled: false });
 }
 
 module.exports = {
@@ -83,6 +98,8 @@ module.exports = {
 	cancelOrder,
 	createOrder,
 	setAddress,
-	orderPaid,
-	getOrderSimple
+	getOrderSimple,
+	orderFulfilled,
+	getFulfulledOrders,
+	getMissingOrders
 }
