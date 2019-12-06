@@ -48,6 +48,41 @@
 		localStorage.removeItem('auth');
 		sapper.goto('admin/login');
 	}
+
+	const url_delete = 'http://localhost:2020/admin/products/delete';
+	function deleteProduct(name, id){
+		if(deleting) return;
+		var d = confirm('¿Deseas borrar el producto ' + name + '?');
+		if(!d) return;
+		deleting = true;
+		fetch(url_delete, {
+			method: 'POST',
+			body: JSON.stringify({ token: auth.token, id: id }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(response=>{
+			deleting = false;
+			response.json().then(res=>{
+				console.log(res);
+				if(res.error){
+					if(res.error.code==101){
+						localStorage.setItem('auth', null);
+						sapper.goto('admin/login')
+						return;
+					}
+					alert(res.error.message);
+					return;
+				}
+				if(res.data.deleted){
+					products = [];
+					getProducts();
+				}
+			})
+		}).catch(err=>{
+			alert("Error haciendo login.");
+		})
+	}
 </script>
 
 
