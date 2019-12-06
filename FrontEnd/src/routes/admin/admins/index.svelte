@@ -61,7 +61,7 @@
 				console.log(res);
 				if(res.error){
 					if(res.error.code==101){
-						localStorage.setItem('auth', null);
+						localStorage.removeItem('auth');
 						sapper.goto('admin/login')
 						return;
 					}
@@ -76,6 +76,11 @@
 		}).catch(err=>{
 			alert("Error haciendo login.");
 		})
+	}
+
+	function logout(){
+		localStorage.removeItem('auth');
+		sapper.goto('admin/login');
 	}
 </script>
 
@@ -93,7 +98,42 @@
 	.container{
 		text-align: center;
 	}
+	.navbar-nav .nav-item .nav-link{
+		font-weight: 600;
+		font-size: 20px;
+		padding: 5px;
+		margin: 0 10px;
+	}
+	.navbar-nav .nav-item .nav-link.admin{
+		color: black;
+		margin-right: 20px;
+	}
 </style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id ="navContainer3">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse" id="navbarNav2">
+		<ul class="navbar-nav" style="flex-grow: 100;">
+			<li class="nav-item">
+				<div class="nav-link admin">Administrador</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/admin">Productos</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="/admin/admins">Usuarios</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/admin/orders">Ordenes</a>
+			</li>
+		</ul>
+		<button type="button" class="btn btn-light logout" on:click={logout}>Cerrar sesión</button>
+	</div>
+</nav>
+
 
 <div class="container">
 	<div class="header">Administrador de Usuarios</div>

@@ -2,9 +2,9 @@
 	import * as sapper from '@sapper/app';
 	import { onMount } from 'svelte';
 
-	let products = [];
+	let orders = [];
 	let auth = false;
-	let deleting = false;
+	let showing_fulfilled = false;
 	
 	onMount(()=>{
 		var a = localStorage.getItem('auth');
@@ -13,14 +13,15 @@
 		}
 		auth = JSON.parse(a);
 
-		getProducts();
+		getOrders(false);
 	});
 
-	const url = 'http://localhost:2020/admin/products';
-	function getProducts(){
+	const url = 'http://localhost:2020/admin/orders/list';
+	function getOrders(fulfilled=false){
+		showing_fulfilled = fulfilled;
 		fetch(url, {
 			method: 'POST',
-			body: JSON.stringify({ token: auth.token }),
+			body: JSON.stringify({ token: auth.token, fulfilled }),
 			headers: {
 				'Content-Type': 'application/json'
 			}
@@ -36,14 +37,17 @@
 					alert(res.error.message);
 					return;
 				}
-				products = res.data;
+				orders = res.data;
 			})
 		}).catch(err=>{
 			alert("Error haciendo login.");
 		})
 	}
 
-	
+	function addCommas(x) {
+		return x.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
 	function logout(){
 		localStorage.removeItem('auth');
 		sapper.goto('admin/login');
@@ -87,13 +91,13 @@
 			<li class="nav-item">
 				<div class="nav-link admin">Administrador</div>
 			</li>
-			<li class="nav-item active">
+			<li class="nav-item">
 				<a class="nav-link" href="/admin">Productos</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/admin/admins">Usuarios</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link" href="/admin/orders">Ordenes</a>
 			</li>
 		</ul>
@@ -102,31 +106,39 @@
 </nav>
 
 <div class="container">
-	<div class="header">Administrador</div>
-	<a class="btn btn-success" href="/admin/add">Agregar producto</a>
+	<div class="header" style="margin: 5px 0;">
+		Ordenes {showing_fulfilled ? 'Entregadas' : 'Pendientes'}
+	</div>
 </div>
+{#if !showing_fulfilled}
+	<button class="btn btn-primary" on:click={()=>getOrders(true)} style="margin: auto; display: block; margin-bottom: 10px;">Ver entregadas</button>
+{:else}
+	<button class="btn btn-primary" on:click={()=>getOrders(false)} style="margin: auto; display: block; margin-bottom: 10px;">Ver pendientes</button>
+{/if}
+
 
 <table class="table">
 	<thead>
 		<tr>
 			<th>Nombre</th>
-			<th>Categoría</th>
-			<th>Costo</th>
-			<th>Editar</th>
-			<th>Borrar</th>
+			<th>Productos</th>
+			<th>Total</th>
+			<th>Ver</th>
 		</tr>
 	</thead>
 	<tbody>
-		{#each products as p}
+		{#if orders.length==0}
+		<tr>
+			<td colspan="4" style="text-align: center; font-weight: 600; font-size: 24px;">No hay ordenes pendientes</td>
+		</tr>
+		{/if}
+		{#each orders as o}
 			<tr>
-				<th scope="row">{p.name}</th>
-				<td>{p.category.rojo ? 'Rojo' : 'Siempreverde'}</td>
-				<td>${p.cost}</td>
+				<th scope="row">{o.name}</th>
+				<td>{o.items.reduce((a,b)=>a+b.quantity, 0)}</td>
+				<td>${addCommas(o.total)}</td>
 				<td>
-					<a class="btn btn-secondary" href="/admin/product/{p._id}">Editar</a>
-				</td>
-				<td>
-					<div class="btn btn-danger" on:click={()=>deleteProduct(p.name, p._id)}>Borrar</div>
+					<a class="btn btn-secondary" href="/admin/orders/{o._id}">Ver</a>
 				</td>
 			</tr>
 		{/each}

@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const Users = require('../lib/Users');
 const Products = require('../lib/Products');
+const Orders = require('../lib/Orders');
 const Codes = require('../Codes');
 const fs = require('fs');
 var app = express.Router();
@@ -161,5 +162,36 @@ app.post('/products/delete', (req, res)=>{
 		return res.error(Codes.unexpectedError);
 	})
 })
+
+// -------------------------------------
+// Order Actions
+// -------------------------------------
+app.post('/orders/list', (req, res)=>{
+	var { fulfilled } = req.body;
+	var pr = fulfilled ? Orders.getFulfulledOrders : Orders.getMissingOrders;
+	pr().then(orders=>{
+		return res.response(orders);
+	}).catch(err=>{
+		return res.error(Codes.unexpectedError);
+	})
+})
+
+app.post('/orders/get', (req, res)=>{
+	var { id } = req.body;
+	Orders.getOrder(id, true).then(order=>{
+		return res.response(order);
+	}).catch(err=>{
+		return res.error(Codes.unexpectedError);
+	})
+});
+
+app.post('/orders/mark', (req, res)=>{
+	var { id } = req.body;
+	Orders.orderFulfilled(id).then(done=>{
+		return res.response({ fulfilled: true });
+	}).catch(err=>{
+		return res.error(Codes.unexpectedError);
+	})
+});
 
 module.exports = app;
