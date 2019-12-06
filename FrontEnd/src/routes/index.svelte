@@ -227,7 +227,7 @@
 <section class="bannerinicio">
 	<div class="textoinicio">
 		<h1 class="titulo">Viveros De Los Santos</h1>
-		<h5 class="titulo">Los mejores expertos en crecimiento de arboles</h5>
+		<h5 class="titulo">Los mejores expertos en crecimiento de arboles.</h5>
 		
 		<button class="btn btn-success boton" type="submit"><a class="textobotoninicio scroll" href="#navbarNav">¡Conócenos!</a></button>
 	</div>

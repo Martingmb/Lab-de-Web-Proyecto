@@ -131,7 +131,7 @@
 
 	.bannerinicio {
     height: 100vh;
-    background-image: url('https://searchengineland.com/figz/wp-content/seloads/2014/11/evergreen-ss-1920-800x450.jpg');
+    background-image: url('https://northernwoodlands.org/images/articles/all_leaves_the_same.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 	
@@ -194,8 +194,8 @@
 
 <section class="bannerinicio">
 		<div class="textoinicio">
-  			<h1 class="titulo">Viveros De Los Santos</h1>
-  			<h5 class="titulo">Los mejores expertos en crecimiento de arboles</h5>
+  			<h1 class="titulo">Nuestros árboles</h1>
+  			<h5 class="titulo">Conoce los árboles que estan a la venta.</h5>
 
   			<button class="btn btn-success boton" type="submit"><a class="textobotoninicio scroll" href="#beneficios">Nuestros árboles</a></button>
   		</div>
