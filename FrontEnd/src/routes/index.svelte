@@ -2,6 +2,7 @@
 	import 'bulma/css/bulma.css'
 	import 'bootstrap/dist/css/bootstrap.css'
 	import Level from './subComponents/level.svelte'
+	import AdminLogin from '../components/adminLogin.svelte';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
@@ -224,6 +225,8 @@
 	<title>Vivero de los Santos</title>
 </svelte:head>
 
+<AdminLogin />
+
 <section class="bannerinicio">
 	<div class="textoinicio">
 		<h1 class="titulo">Viveros De Los Santos</h1>
@@ -235,7 +238,6 @@
 </section>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand scroll" href="#"></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>

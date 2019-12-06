@@ -1,7 +1,6 @@
 <script>
 	import { createEventDispatcher } from "svelte";
 	import Banner from '../components/Banner.svelte';
-	import AdminLogin from '../components/adminLogin.svelte';
 	const dispatch = createEventDispatcher();
 	let adminButton = false;
 </script>

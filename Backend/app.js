@@ -24,6 +24,6 @@ app.use((req, res, next)=>{
 	next();
 });
 
+app.use('/admin', require('./routes/Admin'));
 app.use('/', require('./routes/Checkout'));
 app.use('/', require('./routes/Store'));
-app.use('/admin', require('./routes/Admin'));
